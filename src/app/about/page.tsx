@@ -226,31 +226,55 @@ export default function AboutPage() {
               BOARD OF DIRECTORS
             </h2>
             <p className="mt-3 text-base text-brand-text-secondary">
-              The executive governance of Santoshi Metal Industries Private Limited is led by its
-              incorporating directors:
+              The executive governance and strategic leadership of Santoshi Metal Industries Private
+              Limited is led by its incorporating directors:
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl">
-            {companyData.directors.map((director, idx) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-10 max-w-4xl">
+            {companyData.directors.map((director) => (
               <div
                 key={director.name}
-                className="p-6 rounded-2xl bg-brand-ice border border-brand-border/80 shadow-subtle flex items-start gap-4"
+                className="group rounded-3xl bg-white border border-brand-border shadow-subtle hover:shadow-elevated transition-all duration-300 overflow-hidden flex flex-col"
               >
-                <div className="w-12 h-12 rounded-xl bg-white border border-brand-border flex items-center justify-center text-brand-navy font-heading font-bold text-lg shadow-subtle shrink-0">
-                  0{idx + 1}
+                {/* Director Portrait */}
+                <div className="relative h-80 sm:h-96 w-full bg-slate-100 overflow-hidden">
+                  {director.image ? (
+                    <Image
+                      src={director.image}
+                      alt={`${director.name} - ${director.designation}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                      priority
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-brand-ice text-brand-navy font-heading font-bold text-3xl">
+                      {director.name.charAt(0)}
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/60 via-transparent to-transparent opacity-60" />
                 </div>
-                <div>
-                  <h3 className="font-heading font-bold text-lg text-brand-navy">
-                    {director.name}
-                  </h3>
-                  <div className="text-xs font-semibold text-brand-blue uppercase tracking-wider mt-0.5">
-                    {director.designation}
+
+                {/* Director Information */}
+                <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between bg-white border-t border-slate-100">
+                  <div>
+                    <h3 className="font-heading font-bold text-xl sm:text-2xl text-brand-navy tracking-tight">
+                      {director.name}
+                    </h3>
+                    <div className="text-xs font-semibold text-brand-blue uppercase tracking-widest mt-1">
+                      {director.designation}
+                    </div>
+                    <p className="text-xs sm:text-sm text-brand-text-secondary leading-relaxed mt-3">
+                      Executive Director of Santoshi Metal Industries Private Limited, guiding
+                      corporate governance, manufacturing operations, and industrial quality standards.
+                    </p>
                   </div>
-                  <p className="text-xs text-brand-text-secondary mt-2">
-                    Executive Director of Santoshi Metal Industries Private Limited, guiding
-                    operational establishment, strategic growth, and industrial standards.
-                  </p>
+
+                  <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-brand-text-secondary">
+                    <span className="font-medium text-brand-navy">Santoshi Metal Industries</span>
+                    <span className="text-[11px] font-mono text-slate-400">Incorporating Board</span>
+                  </div>
                 </div>
               </div>
             ))}

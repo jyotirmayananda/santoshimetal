@@ -32,7 +32,7 @@ export function CompanyIntro() {
               From our registered headquarters in Ganjam, Odisha, we are engineered to serve the
               evolving demands of contemporary architecture, high-precision manufacturing,
               die-casting foundries, and structural engineering. Guided by directors Bikrant Kumar
-              Sahu and Kumud Chandra Sahu, our commitment is anchored in uncompromising dimensional
+              Sahu and Sri Kumuda Chandra Sahu, our commitment is anchored in uncompromising dimensional
               precision, durable finishes, and transparent industrial collaboration.
             </p>
 

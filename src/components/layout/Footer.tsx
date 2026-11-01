@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { BrandLogo } from './BrandLogo';
 import { companyData } from '@/data/company';
@@ -155,11 +156,23 @@ export function Footer() {
                   <UserCheck className="w-3.5 h-3.5 text-brand-blue" />
                   Board of Directors:
                 </span>
-                <ul className="space-y-0.5 text-brand-text">
+                <ul className="space-y-1.5 text-brand-text">
                   {companyData.directors.map((director) => (
-                    <li key={director.name} className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-brand-blue" />
-                      <span>{director.name}</span>
+                    <li key={director.name} className="flex items-center gap-2">
+                      {director.image ? (
+                        <div className="relative w-5 h-5 rounded-full overflow-hidden border border-slate-300 shrink-0">
+                          <Image
+                            src={director.image}
+                            alt={director.name}
+                            fill
+                            sizes="20px"
+                            className="object-cover object-top"
+                          />
+                        </div>
+                      ) : (
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-blue" />
+                      )}
+                      <span className="font-medium">{director.name}</span>
                     </li>
                   ))}
                 </ul>

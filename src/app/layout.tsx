@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     'Odisha Aluminium Manufacturing',
     'Ganjam Metal Processing',
     'Bikrant Kumar Sahu',
+    'Sri Kumuda Chandra Sahu',
     'Kumud Chandra Sahu',
     'Architectural Aluminium Profiles',
   ],

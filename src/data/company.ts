@@ -1,6 +1,7 @@
 export interface Director {
   name: string;
   designation: string;
+  image?: string;
 }
 
 export interface CompanyData {
@@ -48,10 +49,12 @@ export const companyData: CompanyData = {
     {
       name: 'Bikrant Kumar Sahu',
       designation: 'Director',
+      image: '/images/leadership/bikrant-kumar-sahu.jpg',
     },
     {
-      name: 'Kumud Chandra Sahu',
+      name: 'Sri Kumuda Chandra Sahu',
       designation: 'Director',
+      image: '/images/leadership/kumuda-chandra-sahu.jpg',
     },
   ],
   tagline: 'ENGINEERING ALUMINIUM. SHAPING THE FUTURE.',
