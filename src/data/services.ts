@@ -29,7 +29,7 @@ export const servicesData: ServiceCapability[] = [
     index: "01",
     tagline: "Colour that lasts. Finishes that perform.",
     iconName: "Layers",
-    image: "/images/products/powder-coating-process.webp",
+    image: "/images/products/actual-powder-coating.webp",
     overview:
       "Aluminium powder coating involves the electrostatic application of dry thermo-polymer pigment powders onto chemically pre-treated aluminium substrates. Once cured at controlled thermal thresholds, the coating forms an impermeable, highly resilient exterior barrier that resists chipping, ultraviolet degradation, and atmospheric corrosion while delivering exceptional aesthetic richness.",
     technicalHighlights: [
@@ -67,7 +67,7 @@ export const servicesData: ServiceCapability[] = [
     index: "02",
     tagline: "Beyond the surface. Molecular-level perfection.",
     iconName: "ShieldCheck",
-    image: "/images/products/anodising-surface.webp",
+    image: "/images/products/actual-anodising.webp",
     overview:
       "Anodising is an electrochemical oxidation process that transforms the natural microscopic aluminium surface into an integral, exceptionally hard aluminium oxide barrier. Because this ceramic-like oxide layer is grown from the substrate itself rather than applied externally, it will never flake, peel, or blister, preserving the authentic metallic sheen and tactile elegance of aluminium.",
     technicalHighlights: [
@@ -104,7 +104,7 @@ export const servicesData: ServiceCapability[] = [
     index: "03",
     tagline: "The strength behind industry.",
     iconName: "Box",
-    image: "/images/products/stacked-ingots.webp",
+    image: "/images/products/actual-stacked-ingots.webp",
     overview:
       "Aluminium ingots form the elemental starting material for modern industrial engineering. Sourced and manufactured with meticulous temperature control, fluxing, and degassing methodologies, our aluminium ingots provide uniform microstructure, low porosity, and verified chemical compositions tailored for die casting, rolling mills, and profile extrusion lines.",
     technicalHighlights: [
@@ -135,7 +135,7 @@ export const servicesData: ServiceCapability[] = [
     index: "04",
     tagline: "Strategic metal sourcing. Uncompromised reliability.",
     iconName: "Truck",
-    image: "/images/products/aluminium-warehouse-supply.webp",
+    image: "/images/products/actual-warehouse-supply.webp",
     overview:
       "Navigating raw material supply chains requires reliability, dimensional accuracy, and prompt logistics coordination. Santoshi Metal Industries provides end-to-end aluminium sourcing and distribution, catering to infrastructure builders, fabricators, and manufacturing units with dependable bulk delivery schedules and documented material integrity.",
     technicalHighlights: [
