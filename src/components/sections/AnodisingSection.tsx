@@ -13,10 +13,11 @@ const AnodisedProfileViewer = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="w-full h-full flex items-center justify-center bg-slate-100 rounded-2xl border border-slate-200 min-h-[420px]">
-        <div className="text-xs font-mono uppercase tracking-widest text-slate-500 animate-pulse">
-          Loading 3D Anodised Substrate...
-        </div>
+      <div className="w-full h-full flex flex-col items-center justify-center bg-black/40 rounded-2xl border border-white/[0.08]">
+        <div className="w-8 h-8 border-2 border-[#FF5B00] border-t-transparent rounded-full animate-spin mb-3" />
+        <span className="text-xs font-mono tracking-widest uppercase text-slate-400">
+          Initializing WebGL 3D Engine...
+        </span>
       </div>
     ),
   }
@@ -45,21 +46,24 @@ export default function AnodisingSection() {
   const matParams = getMaterialParams(selectedFinish.name);
 
   return (
-    <section className="relative w-full py-28 sm:py-36 bg-[#F8FAFC] text-[#0F172A] border-t border-b border-slate-200 overflow-hidden">
+    <section className="relative w-full py-28 sm:py-36 bg-[#07090E] text-white border-t border-b border-white/[0.08] overflow-hidden">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[600px] h-[600px] bg-sky-100/40 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[600px] h-[600px] bg-sky-500/10 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: 3D Interactive Canvas (6 cols) */}
           <div className="lg:col-span-6 order-2 lg:order-1">
-            <div className="relative w-full h-[450px] sm:h-[520px] rounded-3xl bg-white border border-slate-200 p-4 sm:p-6 shadow-xl shadow-slate-200/50 flex flex-col justify-between">
+            <div className="relative w-full h-[460px] sm:h-[530px] rounded-3xl bg-[#0E1420]/80 border border-white/[0.08] backdrop-blur-xl p-4 sm:p-6 shadow-2xl flex flex-col justify-between">
               {/* Header Bar */}
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-                <span className="text-xs font-semibold text-[#FF5B00]">
-                  3D Surface Inspection
-                </span>
-                <span className="text-xs text-slate-500 font-medium">
+              <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
+                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#FF8A00]">
+                    WebGL 3D Surface Inspection
+                  </span>
+                </div>
+                <span className="text-xs font-mono text-slate-400">
                   Finish: {selectedFinish.name}
                 </span>
               </div>
@@ -74,13 +78,13 @@ export default function AnodisingSection() {
               </div>
 
               {/* Finish Switcher Buttons */}
-              <div className="pt-3 border-t border-slate-100 space-y-2">
+              <div className="pt-3 border-t border-white/[0.08] space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 font-bold">
-                    Select Anodised Tone:
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold">
+                    Select Electrochemical Tone:
                   </span>
-                  <span className="text-[10px] font-mono text-slate-400">
-                    Illustrative Tone Standard
+                  <span className="text-[10px] font-mono text-slate-500">
+                    Architectural Spec
                   </span>
                 </div>
 
@@ -96,16 +100,16 @@ export default function AnodisingSection() {
                         className={cn(
                           "py-2 px-2 rounded-xl border text-center transition-all flex flex-col items-center gap-1 cursor-pointer",
                           isSelected
-                            ? "bg-orange-50 border-[#FF5B00] shadow-sm ring-1 ring-[#FF5B00]/30"
-                            : "bg-slate-50 border-slate-200 hover:border-slate-300 hover:bg-white"
+                            ? "bg-orange-500/15 border-[#FF5B00] shadow-md shadow-orange-500/20 ring-1 ring-[#FF5B00]/40"
+                            : "bg-white/[0.03] border-white/[0.08] hover:border-white/[0.2] hover:bg-white/[0.06]"
                         )}
                       >
                         <span
-                          className="w-4 h-4 rounded-full border border-slate-300 shadow-inner"
+                          className="w-4 h-4 rounded-full border border-white/20 shadow-inner"
                           style={{ backgroundColor: finish.hex }}
                         />
-                        <span className="text-[10px] font-mono font-medium text-slate-800 truncate max-w-full">
-                          {finish.name.split(" ")[0]}
+                        <span className="text-[10px] font-mono font-semibold text-white truncate max-w-full">
+                          {finish.name}
                         </span>
                       </button>
                     );
@@ -117,58 +121,61 @@ export default function AnodisingSection() {
 
           {/* Right Column: Technical Editorial (6 cols) */}
           <div className="lg:col-span-6 order-1 lg:order-2 space-y-8">
-            <div className="flex items-center gap-3">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#FF5B00]">02 / Surface Chemistry</span>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#FF5B00] animate-pulse" />
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF8A00]">
+                Line 02 // Surface Chemistry
+              </span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.08] font-sans">
               Beyond The Surface.
               <br />
-              <span className="text-[#FF5B00]">Molecular Strength.</span>
+              <span className="text-gradient-orange">Molecular Strength.</span>
             </h2>
 
-            <p className="text-base text-slate-600 leading-relaxed font-normal">
+            <p className="text-base text-slate-400 leading-relaxed font-normal">
               Unlike topical paint coatings, anodising electrochemically converts the surface aluminium into a sapphire-hard aluminium oxide crystalline structure that becomes inseparable from the core metal. It will never peel, flake, or blister.
             </p>
 
             <div className="space-y-3 pt-2">
-              <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm">
-                <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center text-[#C6924D] shrink-0 mt-0.5 border border-amber-200/50">
+              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-[#0E1420]/80 border border-white/[0.08] backdrop-blur-xl">
+                <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center text-[#FF8A00] shrink-0 mt-0.5 border border-orange-500/20">
                   <Shield className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wide text-slate-900">
+                  <h4 className="text-xs font-bold uppercase tracking-wide text-white">
                     Sapphire-Grade Surface Hardness
                   </h4>
-                  <p className="text-xs text-slate-500 mt-0.5">
+                  <p className="text-xs text-slate-400 mt-0.5">
                     Resists abrasion, mechanical scratching, and harsh coastal atmospheric exposure.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm">
-                <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center text-[#C6924D] shrink-0 mt-0.5 border border-amber-200/50">
+              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-[#0E1420]/80 border border-white/[0.08] backdrop-blur-xl">
+                <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center text-[#FF8A00] shrink-0 mt-0.5 border border-orange-500/20">
                   <Layers className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wide text-slate-900">
+                  <h4 className="text-xs font-bold uppercase tracking-wide text-white">
                     Authentic Metallic Tactile Depth
                   </h4>
-                  <p className="text-xs text-slate-500 mt-0.5">
+                  <p className="text-xs text-slate-400 mt-0.5">
                     Preserves the natural metallic sheen and optical refraction unique to raw architectural aluminium.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm">
-                <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center text-[#C6924D] shrink-0 mt-0.5 border border-amber-200/50">
+              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-[#0E1420]/80 border border-white/[0.08] backdrop-blur-xl">
+                <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center text-[#FF8A00] shrink-0 mt-0.5 border border-orange-500/20">
                   <Zap className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wide text-slate-900">
+                  <h4 className="text-xs font-bold uppercase tracking-wide text-white">
                     Electrolytic Sealing Technology
                   </h4>
-                  <p className="text-xs text-slate-500 mt-0.5">
+                  <p className="text-xs text-slate-400 mt-0.5">
                     Demineralized high-temperature sealing locks the microscopic anodic pore network against staining.
                   </p>
                 </div>
@@ -178,7 +185,7 @@ export default function AnodisingSection() {
             <div className="pt-2">
               <Link
                 href="/capabilities/anodising"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-semibold text-white bg-[#FF5B00] hover:bg-[#E04F00] transition-colors shadow-sm"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-[#FF5B00] to-[#E04F00] hover:from-[#FF731A] hover:to-[#FF5B00] transition-all shadow-md shadow-orange-500/20"
               >
                 <span>Explore Anodising Solutions</span>
                 <ArrowUpRight className="w-4 h-4" />

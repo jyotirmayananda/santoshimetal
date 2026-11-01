@@ -1,20 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @layer base {
   :root {
     --primary-orange: #FF5B00;
-    --primary-orange-hover: #E04F00;
-    --primary-orange-light: #FFF4ED;
-    --primary-orange-border: #FFD4BD;
-    --bg-canvas: #FFFFFF;
-    --bg-subtle: #F9FAFB;
-    --bg-card: #FFFFFF;
-    --text-heading: #111827;
-    --text-body: #4B5563;
-    --text-muted: #6B7280;
-    --border-color: #F3F4F6;
-    --border-card: #E5E7EB;
+    --primary-orange-hover: #FF731A;
+    --primary-orange-glow: rgba(255, 91, 0, 0.25);
+    
+    /* Cinematic Obsidian Palette (Inspired by Zeggo, ReFactory & Apricode) */
+    --bg-canvas: #07090E;
+    --bg-subtle: #0B0F17;
+    --bg-card: rgba(15, 20, 30, 0.7);
+    --bg-card-hover: rgba(22, 28, 42, 0.85);
+    
+    --text-heading: #FFFFFF;
+    --text-body: #94A3B8;
+    --text-muted: #64748B;
+    
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-card: rgba(255, 255, 255, 0.1);
+    --border-card-hover: rgba(255, 91, 0, 0.4);
   }
 
   * {
@@ -26,6 +31,7 @@
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: var(--bg-canvas);
     color: var(--text-heading);
+    color-scheme: dark;
   }
 
   body {
@@ -33,7 +39,7 @@
     min-height: 100vh;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: var(--bg-canvas);
-    color: var(--text-heading);
+    color: var(--text-body);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -47,53 +53,74 @@
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F9FAFB;
+  background: #07090E;
 }
 ::-webkit-scrollbar-thumb {
-  background: #E5E7EB;
+  background: #1E293B;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #FF5B00;
 }
 
-/* WorkBolt Styled Utility Tokens */
-.text-orange-primary {
-  color: #FF5B00;
+/* Cinematic Grid & Radial Mesh Utilities */
+.bg-grid-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
-.bg-orange-primary {
-  background-color: #FF5B00;
+.bg-dot-mesh {
+  background-image: radial-gradient(rgba(255, 91, 0, 0.12) 1.5px, transparent 1.5px);
+  background-size: 40px 40px;
 }
 
-.bg-orange-light {
-  background-color: #FFF4ED;
+/* Glassmorphism Card Style */
+.glass-panel {
+  background: rgba(14, 19, 29, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.border-orange-subtle {
-  border-color: #FFD4BD;
+.glass-panel-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-hover:hover {
+  border-color: rgba(255, 91, 0, 0.35);
+  box-shadow: 0 10px 40px -10px rgba(255, 91, 0, 0.15);
+  transform: translateY(-2px);
 }
 
-.workbolt-card {
-  background-color: #FFFFFF;
-  border: 1px solid #F3F4F6;
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+/* Kinetic Gradient Typography */
+.text-gradient-orange {
+  background: linear-gradient(135deg, #FF8A00 0%, #FF5B00 50%, #FF3D00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.workbolt-card-hover {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.workbolt-card-hover:hover {
-  border-color: #FFD4BD;
-  transform: translateY(-4px);
-  box-shadow: 0 20px 35px -5px rgba(255, 91, 0, 0.08), 0 8px 10px -4px rgba(0, 0, 0, 0.03);
+.text-gradient-silver {
+  background: linear-gradient(180deg, #FFFFFF 0%, #CBD5E1 60%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.workbolt-pill-active {
-  background-color: #FF5B00;
-  color: #FFFFFF;
-  box-shadow: 0 4px 12px rgba(255, 91, 0, 0.25);
+/* Glow Effects */
+.orange-glow {
+  box-shadow: 0 0 35px -5px rgba(255, 91, 0, 0.35);
+}
+
+.orange-border-glow {
+  box-shadow: 0 0 0 1px rgba(255, 91, 0, 0.4), 0 0 20px rgba(255, 91, 0, 0.15);
+}
+
+/* Hide scrollbar for clean tab carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

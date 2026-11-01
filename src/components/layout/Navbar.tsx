@@ -47,7 +47,9 @@ export default function Navbar() {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4",
-        scrolled ? "bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-100" : "bg-transparent"
+        scrolled
+          ? "bg-[#07090E]/85 backdrop-blur-xl shadow-2xl shadow-black/60 border-b border-white/[0.08]"
+          : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,8 +57,8 @@ export default function Navbar() {
           {/* Logo */}
           <Logo layout="horizontal" height={38} variant="dark" />
 
-          {/* Center Floating Pill Navigation (Matching Screenshot) */}
-          <nav className="hidden md:flex items-center p-1.5 rounded-full bg-white/95 border border-slate-200/80 shadow-sm backdrop-blur-md">
+          {/* Center Floating Pill Navigation (Matching Apricode & Zeggo Glass Bar) */}
+          <nav className="hidden md:flex items-center p-1.5 rounded-full bg-[#0E131D]/80 border border-white/[0.1] shadow-2xl backdrop-blur-xl">
             {navItems.map((item) => {
               const isActive =
                 item.href === "/"
@@ -74,10 +76,10 @@ export default function Navbar() {
                     <button
                       type="button"
                       className={cn(
-                        "relative flex items-center gap-1.5 px-4 py-2 text-sm font-medium transition-all rounded-full",
+                        "relative flex items-center gap-1.5 px-4 py-2 text-xs sm:text-sm font-semibold transition-all rounded-full cursor-pointer",
                         isActive
-                          ? "bg-[#FF5B00] text-white shadow-sm"
-                          : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                          ? "bg-[#FF5B00] text-white shadow-md shadow-orange-500/25"
+                          : "text-slate-300 hover:text-white hover:bg-white/[0.08]"
                       )}
                       aria-expanded={activeDropdown === item.label}
                     >
@@ -85,7 +87,7 @@ export default function Navbar() {
                       <ChevronDown
                         className={cn(
                           "w-3.5 h-3.5 transition-transform duration-200",
-                          activeDropdown === item.label ? "rotate-180" : ""
+                          activeDropdown === item.label ? "rotate-180 text-white" : "text-slate-400"
                         )}
                       />
                     </button>
@@ -98,15 +100,15 @@ export default function Navbar() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 8, scale: 0.98 }}
                           transition={{ duration: 0.18, ease: "easeOut" }}
-                          className="absolute top-full left-0 w-80 p-2 mt-2 bg-white border border-slate-100 rounded-2xl shadow-xl shadow-slate-900/5 overflow-hidden"
+                          className="absolute top-full left-0 w-80 p-2 mt-2 bg-[#0B0F17]/95 border border-white/[0.1] backdrop-blur-2xl rounded-2xl shadow-2xl shadow-black/80 overflow-hidden"
                         >
-                          <div className="p-2.5 border-b border-slate-100 mb-1 flex items-center justify-between">
-                            <span className="text-xs font-semibold text-[#FF5B00] uppercase tracking-wider">
-                              Our Capabilities
+                          <div className="p-2.5 border-b border-white/[0.08] mb-1 flex items-center justify-between">
+                            <span className="text-[11px] font-bold text-[#FF8A00] uppercase tracking-widest">
+                              Industrial Vertical
                             </span>
                             <Link
                               href="/capabilities"
-                              className="text-xs text-slate-500 hover:text-[#FF5B00] flex items-center gap-1 font-medium"
+                              className="text-xs text-slate-400 hover:text-[#FF5B00] flex items-center gap-1 font-medium transition-colors"
                             >
                               <span>Overview</span>
                               <ArrowUpRight className="w-3 h-3" />
@@ -121,19 +123,19 @@ export default function Navbar() {
                                 className={cn(
                                   "group/sub flex items-start gap-3 p-2.5 rounded-xl transition-all",
                                   pathname === subItem.href
-                                    ? "bg-orange-50 text-[#FF5B00]"
-                                    : "hover:bg-slate-50 text-slate-700"
+                                    ? "bg-orange-500/15 text-[#FF8A00] border border-orange-500/30"
+                                    : "hover:bg-white/[0.06] text-slate-300"
                                 )}
                               >
-                                <span className="font-semibold text-xs text-[#FF5B00] mt-0.5">
+                                <span className="font-mono text-xs text-[#FF5B00] font-bold mt-0.5">
                                   {subItem.index}
                                 </span>
                                 <div>
-                                  <div className="text-sm font-semibold flex items-center gap-1 group-hover/sub:text-[#FF5B00] transition-colors">
+                                  <div className="text-sm font-semibold flex items-center gap-1 group-hover/sub:text-[#FF8A00] transition-colors text-white">
                                     <span>{subItem.label}</span>
-                                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover/sub:opacity-100 transition-opacity" />
+                                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover/sub:opacity-100 transition-opacity text-[#FF5B00]" />
                                   </div>
-                                  <p className="text-xs text-slate-500 line-clamp-1 mt-0.5">
+                                  <p className="text-xs text-slate-400 line-clamp-1 mt-0.5">
                                     {subItem.description}
                                   </p>
                                 </div>
@@ -152,10 +154,10 @@ export default function Navbar() {
                   key={item.label}
                   href={item.href}
                   className={cn(
-                    "px-4 py-2 text-sm font-medium transition-all rounded-full",
+                    "px-4 py-2 text-xs sm:text-sm font-semibold transition-all rounded-full",
                     isActive
-                      ? "bg-[#FF5B00] text-white shadow-sm"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                      ? "bg-[#FF5B00] text-white shadow-md shadow-orange-500/25"
+                      : "text-slate-300 hover:text-white hover:bg-white/[0.08]"
                   )}
                 >
                   {item.label}
@@ -164,27 +166,28 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Right Action Buttons (Matching Screenshot) */}
+          {/* Right Action Buttons */}
           <div className="flex items-center gap-3">
             <Link
               href="/contact"
-              className="hidden lg:inline-block text-sm font-medium text-slate-600 hover:text-[#FF5B00] px-3 py-2 transition-colors"
+              className="hidden lg:inline-block text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-white px-3 py-2 transition-colors"
             >
-              Enquiry
+              Enquiries
             </Link>
 
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white bg-[#FF5B00] hover:bg-[#E04F00] transition-all shadow-md shadow-orange-500/20 hover:shadow-orange-500/30 active:scale-95"
+              className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-[#FF5B00] to-[#E04F00] hover:from-[#FF731A] hover:to-[#FF5B00] transition-all shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 active:scale-95"
             >
               <span>Get a Quote</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
             </Link>
 
             {/* Mobile Menu Button */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-full text-slate-700 hover:bg-slate-100 transition-colors"
+              className="md:hidden p-2 rounded-full text-slate-300 hover:text-white hover:bg-white/[0.08] transition-colors cursor-pointer"
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             >
               {mobileMenuOpen ? (
@@ -205,10 +208,10 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "100vh" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed inset-0 top-0 left-0 w-full h-screen bg-white z-40 overflow-y-auto px-6 pt-24 pb-12 flex flex-col justify-between"
+            className="fixed inset-0 top-0 left-0 w-full h-screen bg-[#07090E] z-40 overflow-y-auto px-6 pt-24 pb-12 flex flex-col justify-between"
           >
             <div className="space-y-6">
-              <div className="pb-4 border-b border-slate-100 flex items-center justify-between">
+              <div className="pb-4 border-b border-white/[0.08] flex items-center justify-between">
                 <Logo layout="horizontal" height={36} />
               </div>
 
@@ -219,24 +222,23 @@ export default function Navbar() {
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
                       className={cn(
-                        "text-xl font-bold block py-2 transition-colors",
-                        pathname === item.href
-                          ? "text-[#FF5B00]"
-                          : "text-slate-900 hover:text-[#FF5B00]"
+                        "block py-3 text-lg font-bold tracking-tight border-b border-white/[0.05]",
+                        pathname === item.href ? "text-[#FF5B00]" : "text-white"
                       )}
                     >
                       {item.label}
                     </Link>
 
                     {item.children && (
-                      <div className="pl-4 mt-2 space-y-2 border-l border-slate-200">
+                      <div className="pl-4 py-2 space-y-2 border-l border-white/[0.1] mt-2">
                         {item.children.map((subItem) => (
                           <Link
                             key={subItem.href}
                             href={subItem.href}
                             onClick={() => setMobileMenuOpen(false)}
-                            className="block text-sm text-slate-600 hover:text-[#FF5B00] py-1 font-medium"
+                            className="block py-1.5 text-sm text-slate-400 hover:text-white"
                           >
+                            <span className="text-[#FF5B00] mr-2 font-mono">{subItem.index}</span>
                             {subItem.label}
                           </Link>
                         ))}
@@ -247,14 +249,18 @@ export default function Navbar() {
               </div>
             </div>
 
-            <div className="pt-6 border-t border-slate-100">
+            <div className="pt-6 border-t border-white/[0.08] space-y-4">
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-3.5 rounded-full text-center text-sm font-semibold text-white bg-[#FF5B00] block shadow-lg shadow-orange-500/20"
+                className="w-full flex items-center justify-center gap-2 py-4 rounded-full text-sm font-bold text-white bg-[#FF5B00] shadow-lg shadow-orange-500/25"
               >
-                Get a Quote
+                <span>Request a Quote</span>
+                <ArrowUpRight className="w-4 h-4" />
               </Link>
+              <p className="text-center text-xs text-slate-500 font-mono">
+                CIN: U24202OD2026PTC055660 • Odisha, India
+              </p>
             </div>
           </motion.div>
         )}

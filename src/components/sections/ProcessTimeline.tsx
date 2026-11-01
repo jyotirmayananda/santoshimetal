@@ -38,33 +38,32 @@ const processSteps = [
 
 export default function ProcessTimeline() {
   return (
-    <section className="relative w-full py-28 sm:py-36 bg-white text-[#0F172A] overflow-hidden border-t border-b border-slate-200">
+    <section className="relative w-full py-28 sm:py-36 bg-[#07090E] text-white overflow-hidden border-t border-b border-white/[0.08]">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#FF5B00]">Workflow Architecture</span>
+          <div className="flex items-center gap-2 mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#FF5B00] animate-pulse" />
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF8A00]">
+              Sequential Workflow
+            </span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
-            From Material To
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.08] font-sans">
+            From Raw Metallurgy To
             <br />
-            <span className="text-[#FF5B00]">Finished Masterpiece.</span>
+            <span className="text-gradient-orange">Architectural Perfection.</span>
           </h2>
 
-          <p className="text-base text-slate-600 mt-4 leading-relaxed max-w-2xl font-normal">
-            Our sequential manufacturing philosophy emphasizes precision control at each transformation phase.
-          </p>
-
-          <p className="text-xs text-slate-400 mt-2 italic font-normal">
-            *Illustrative conceptual workflow framework. Individual processing stages vary depending on specific service requirements.
+          <p className="text-base text-slate-400 mt-4 leading-relaxed max-w-2xl font-normal">
+            Our sequential manufacturing philosophy emphasizes precision control, calibrated chemical baths, and rigorous verification at each phase.
           </p>
         </div>
 
         {/* Process Timeline - Horizontal on Desktop */}
         <div className="hidden lg:block relative pt-10 pb-6">
           {/* Connecting Line */}
-          <div className="absolute top-18 left-8 right-8 h-[2px] bg-gradient-to-r from-slate-200 via-amber-400 to-slate-200 pointer-events-none" />
+          <div className="absolute top-18 left-8 right-8 h-[2px] bg-gradient-to-r from-orange-500/20 via-[#FF5B00]/40 to-orange-500/20 pointer-events-none" />
 
           <div className="grid grid-cols-5 gap-6 relative z-10">
             {processSteps.map((step, idx) => {
@@ -76,23 +75,23 @@ export default function ProcessTimeline() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.12 * idx, duration: 0.5 }}
-                  className="space-y-4 group"
+                  transition={{ delay: 0.1 * idx, duration: 0.5 }}
+                  className="space-y-4 group cursor-default"
                 >
                   {/* Step Circle */}
-                  <div className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-200 group-hover:border-orange-200 transition-colors flex items-center justify-center text-slate-700 group-hover:text-[#FF5B00] group-hover:bg-orange-50 shadow-sm">
+                  <div className="w-16 h-16 rounded-2xl bg-[#0E1420]/80 border border-white/[0.08] group-hover:border-orange-500/50 transition-all duration-300 flex items-center justify-center text-slate-300 group-hover:text-white group-hover:bg-[#FF5B00] shadow-xl group-hover:shadow-orange-500/25">
                     <Icon className="w-6 h-6" />
                   </div>
 
                   {/* Step Info */}
                   <div className="space-y-2">
-                    <span className="text-xs font-bold text-[#FF5B00]">
-                      STAGE {step.step}
+                    <span className="text-xs font-mono font-bold text-[#FF8A00] block">
+                      PHASE // {step.step}
                     </span>
-                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#FF5B00] transition-colors">
+                    <h3 className="text-sm font-bold text-white group-hover:text-[#FF8A00] transition-colors">
                       {step.title}
                     </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                    <p className="text-xs text-slate-400 leading-relaxed font-normal">
                       {step.desc}
                     </p>
                   </div>
@@ -103,30 +102,30 @@ export default function ProcessTimeline() {
         </div>
 
         {/* Process Timeline - Vertical on Mobile */}
-        <div className="lg:hidden space-y-8 relative pl-6 border-l-2 border-orange-400/40 ml-3">
+        <div className="lg:hidden space-y-8 relative pl-6 border-l-2 border-orange-500/30 ml-3">
           {processSteps.map((step) => {
             const Icon = step.icon;
 
             return (
               <div key={step.step} className="relative space-y-2">
                 {/* Node on line */}
-                <span className="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-white border-2 border-[#FF5B00]" />
+                <span className="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-[#07090E] border-2 border-[#FF5B00]" />
 
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-amber-50 border border-amber-200/50 text-[#C6924D] flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-xl bg-orange-500/10 border border-orange-500/20 text-[#FF8A00] flex items-center justify-center">
                     <Icon className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="font-mono text-[10px] text-[#C6924D] font-bold block">
+                    <span className="font-mono text-[10px] text-[#FF8A00] font-bold block">
                       STAGE {step.step}
                     </span>
-                    <h3 className="text-base font-bold uppercase text-slate-900">
+                    <h3 className="text-sm font-bold text-white">
                       {step.title}
                     </h3>
                   </div>
                 </div>
 
-                <p className="text-xs text-slate-600 leading-relaxed pt-1">
+                <p className="text-xs text-slate-400 leading-relaxed pl-12 font-normal">
                   {step.desc}
                 </p>
               </div>
