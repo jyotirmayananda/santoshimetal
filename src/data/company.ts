@@ -47,14 +47,14 @@ export const companyData: CompanyData = {
   },
   directors: [
     {
-      name: 'Bikrant Kumar Sahu',
-      designation: 'Director',
-      image: '/images/leadership/bikrant-kumar-sahu.jpg',
-    },
-    {
       name: 'Sri Kumuda Chandra Sahu',
       designation: 'Director',
       image: '/images/leadership/kumuda-chandra-sahu.jpg',
+    },
+    {
+      name: 'Bikrant Kumar Sahu',
+      designation: 'Director',
+      image: '/images/leadership/bikrant-kumar-sahu.jpg',
     },
   ],
   tagline: 'ENGINEERING ALUMINIUM. SHAPING THE FUTURE.',
