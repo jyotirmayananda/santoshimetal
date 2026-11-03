@@ -14,16 +14,18 @@ import {
 import { JsonLd } from '@/components/seo/JsonLd';
 import { breadcrumbJsonLd, buildPageMetadata, SITE_URL } from '@/lib/seo';
 
+import { pageSeoCopy } from '@/data/seo-pages';
+
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Contact & Request a Quote',
-  description:
-    'Request a quotation for aluminium ingot, profile, scrap & supply, powder coating, or anodising. Contact Santoshi Metal Industries in Kabisuryanagar, Ganjam, Odisha.',
+  title: pageSeoCopy.contact.title,
+  description: pageSeoCopy.contact.description,
   path: '/contact',
   keywords: [
     'aluminium quote Odisha',
     'contact Santoshi Metal Industries',
     'powder coating enquiry',
     'aluminium ingot quotation',
+    'anodising quote India',
   ],
   image: '/images/logo-full.jpg',
 });

@@ -11,31 +11,33 @@ import { IndustriesGrid } from '@/components/sections/IndustriesGrid';
 import { GalleryPreview } from '@/components/sections/GalleryPreview';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 import { JsonLd } from '@/components/seo/JsonLd';
+import { pageSeoCopy, siteFaqs } from '@/data/seo-pages';
 import { servicesData } from '@/data/services';
 import {
-  SITE_NAME,
+  SITE_URL,
   absoluteUrl,
   breadcrumbJsonLd,
   buildPageMetadata,
+  faqJsonLd,
   offerCatalogJsonLd,
 } from '@/lib/seo';
 
 export const metadata: Metadata = {
   ...buildPageMetadata({
-    title: 'Aluminium Ingot, Profile, Scrap Supply, Powder Coating & Anodising',
-    description:
-      'Santoshi Metal Industries Private Limited (CIN: U24202OD2026PTC055660) is an aluminium manufacturing and processing company in Ganjam, Odisha. Specializing in Aluminium Ingot, Aluminium Profile, Scrap & Supply, Powder Coating, and Anodising across India.',
+    title: pageSeoCopy.home.title,
+    description: pageSeoCopy.home.description,
     path: '/',
     keywords: [
       'aluminium manufacturer Odisha',
       'aluminium company Ganjam',
       'remelt ingot supplier India',
       'powder coating plant Odisha',
+      'aluminium anodising Odisha',
     ],
     image: '/images/silver-wave.jpg',
   }),
   title: {
-    absolute: `${SITE_NAME} | Aluminium Ingot, Profile, Coating & Anodising in Odisha`,
+    absolute: pageSeoCopy.home.absoluteTitle,
   },
 };
 
@@ -49,17 +51,21 @@ export default function HomePage() {
         shortDescription: s.shortDescription,
       }))
     ),
+    faqJsonLd(siteFaqs),
     {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
-      '@id': `${absoluteUrl('/')}/#webpage`,
+      '@id': `${SITE_URL}/#webpage`,
       url: absoluteUrl('/'),
-      name: `${SITE_NAME} | Engineering Aluminium. Shaping the Future.`,
-      isPartOf: { '@id': `${absoluteUrl('/')}/#website` },
-      about: { '@id': `${absoluteUrl('/')}/#organization` },
-      description:
-        'Aluminium ingot, profile, scrap & supply, powder coating, and anodising from Santoshi Metal Industries, Odisha.',
+      name: pageSeoCopy.home.absoluteTitle,
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      about: { '@id': `${SITE_URL}/#organization` },
+      description: pageSeoCopy.home.description,
       inLanguage: 'en-IN',
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: absoluteUrl('/images/silver-wave.jpg'),
+      },
     },
   ];
 

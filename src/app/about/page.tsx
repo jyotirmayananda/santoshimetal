@@ -19,16 +19,18 @@ import { CtaBanner } from '@/components/sections/CtaBanner';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
 
+import { pageSeoCopy } from '@/data/seo-pages';
+
 export const metadata: Metadata = buildPageMetadata({
-  title: 'About Us',
-  description:
-    'Learn about Santoshi Metal Industries Private Limited (CIN: U24202OD2026PTC055660)—aluminium ingot, profile, scrap & supply, powder coating, and anodising from Ganjam, Odisha.',
+  title: pageSeoCopy.about.title,
+  description: pageSeoCopy.about.description,
   path: '/about',
   keywords: [
     'about Santoshi Metal Industries',
     'aluminium company Odisha',
     'Kumuda Chandra Sahu',
     'Bikrant Kumar Sahu',
+    'CIN U24202OD2026PTC055660',
   ],
   image: '/images/architectural-facade.jpg',
 });

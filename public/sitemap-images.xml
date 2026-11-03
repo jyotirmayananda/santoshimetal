@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://santoshimetal.com/</loc>
+    <image:image>
+      <image:loc>https://santoshimetal.com/images/silver-wave.jpg</image:loc>
+      <image:title>Santoshi Metal Industries polished aluminium surface</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://santoshimetal.com/images/logo-full.jpg</image:loc>
+      <image:title>Santoshi Metal Industries official logo</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://santoshimetal.com/capabilities/aluminium-ingots</loc>
+    <image:image>
+      <image:loc>https://santoshimetal.com/images/aluminium-ingots.jpg</image:loc>
+      <image:title>Aluminium remelt ingots</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://santoshimetal.com/capabilities/aluminium-profile</loc>
+    <image:image>
+      <image:loc>https://santoshimetal.com/images/gallery-extrusion-sections.jpg</image:loc>
+      <image:title>Aluminium profile extrusions</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://santoshimetal.com/capabilities/aluminium-scrap-supply</loc>
+    <image:image>
+      <image:loc>https://santoshimetal.com/images/aluminium-supply.jpg</image:loc>
+      <image:title>Aluminium scrap and supply stock</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://santoshimetal.com/capabilities/powder-coating</loc>
+    <image:image>
+      <image:loc>https://santoshimetal.com/images/powder-coating.jpg</image:loc>
+      <image:title>Aluminium powder coating line</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://santoshimetal.com/capabilities/anodising</loc>
+    <image:image>
+      <image:loc>https://santoshimetal.com/images/anodising.jpg</image:loc>
+      <image:title>Aluminium anodising finish</image:title>
+    </image:image>
+  </url>
+</urlset>

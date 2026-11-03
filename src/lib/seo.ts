@@ -14,9 +14,12 @@ export const DEFAULT_OG_IMAGE = {
 
 export const PRIMARY_KEYWORDS = [
   'Santoshi Metal Industries',
+  'Santoshi Metal Industries Private Limited',
   'Aluminium Ingot Odisha',
+  'Aluminium Ingot Manufacturer India',
   'Aluminium Profile Supplier India',
-  'Aluminium Scrap Supply',
+  'Aluminium Extrusion Odisha',
+  'Aluminium Scrap Supply Odisha',
   'Aluminium Powder Coating Odisha',
   'Aluminium Anodising India',
   'Ganjam Aluminium Manufacturing',
@@ -25,6 +28,8 @@ export const PRIMARY_KEYWORDS = [
   'Architectural Aluminium Profiles',
   'Electrostatic Powder Coating',
   'Electrochemical Anodising',
+  'Aluminium company Ganjam',
+  'Buy aluminium ingots Odisha',
 ] as const;
 
 export function absoluteUrl(path = '/'): string {
@@ -268,5 +273,69 @@ export function offerCatalogJsonLd(
         url: absoluteUrl(`/capabilities/${service.slug}`),
       },
     })),
+  };
+}
+
+export function faqJsonLd(faqs: { question: string; answer: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
+export function siteNavigationJsonLd(
+  links: { name: string; path: string }[]
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `${SITE_NAME} Primary Navigation`,
+    itemListElement: links.map((link, index) => ({
+      '@type': 'SiteNavigationElement',
+      position: index + 1,
+      name: link.name,
+      url: absoluteUrl(link.path),
+    })),
+  };
+}
+
+export function manufacturingBusinessJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ManufacturingBusiness',
+    '@id': `${SITE_URL}/#manufacturing`,
+    name: SITE_NAME,
+    legalName: LEGAL_NAME,
+    url: SITE_URL,
+    image: absoluteImageUrl('/images/logo-full.jpg'),
+    description:
+      'Aluminium ingot manufacturing, profile supply, scrap & supply, powder coating, and anodising in Odisha, India.',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: `${companyData.registeredOffice.careOf}, ${companyData.registeredOffice.street}`,
+      addressLocality: 'Kabisuryanagar',
+      addressRegion: 'Odisha',
+      postalCode: companyData.registeredOffice.pincode,
+      addressCountry: 'IN',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 19.6012,
+      longitude: 84.7966,
+    },
+    hasOfferCatalog: {
+      '@id': `${SITE_URL}/capabilities`,
+    },
+    parentOrganization: {
+      '@id': `${SITE_URL}/#organization`,
+    },
   };
 }

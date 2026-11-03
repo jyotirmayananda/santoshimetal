@@ -18,15 +18,17 @@ import { CtaBanner } from '@/components/sections/CtaBanner';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
 
+import { pageSeoCopy } from '@/data/seo-pages';
+
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Industries We Serve',
-  description:
-    'Aluminium solutions for architecture, infrastructure, automotive, electrical engineering, and industrial fabrication from Santoshi Metal Industries, Odisha.',
+  title: pageSeoCopy.industries.title,
+  description: pageSeoCopy.industries.description,
   path: '/industries',
   keywords: [
     'architectural aluminium India',
     'automotive aluminium castings',
     'infrastructure aluminium profiles',
+    'industrial aluminium fabrication Odisha',
   ],
   image: '/images/architectural-facade.jpg',
 });

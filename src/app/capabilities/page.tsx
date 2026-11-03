@@ -4,15 +4,17 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { servicesData } from '@/data/services';
 import { breadcrumbJsonLd, buildPageMetadata, offerCatalogJsonLd } from '@/lib/seo';
 
+import { pageSeoCopy } from '@/data/seo-pages';
+
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Aluminium Capabilities',
-  description:
-    'Explore Santoshi Metal Industries capabilities: Aluminium Ingot, Aluminium Profile, Aluminium Scrap & Supply, Powder Coating, and Anodising in Odisha, India.',
+  title: pageSeoCopy.capabilities.title,
+  description: pageSeoCopy.capabilities.description,
   path: '/capabilities',
   keywords: [
     'aluminium capabilities Odisha',
     'aluminium processing India',
     'powder coating and anodising',
+    'aluminium ingot and profile supplier',
   ],
   image: '/images/powder-coating.jpg',
 });

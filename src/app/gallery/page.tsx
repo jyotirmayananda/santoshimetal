@@ -6,15 +6,17 @@ import { CtaBanner } from '@/components/sections/CtaBanner';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
 
+import { pageSeoCopy } from '@/data/seo-pages';
+
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Surface Gallery',
-  description:
-    'Browse architectural powder coating finishes, anodised aluminium profiles, remelt ingots, and extrusion photography from Santoshi Metal Industries.',
+  title: pageSeoCopy.gallery.title,
+  description: pageSeoCopy.gallery.description,
   path: '/gallery',
   keywords: [
     'aluminium finish gallery',
     'powder coating samples',
     'anodised aluminium photos',
+    'aluminium ingot photography',
   ],
   image: '/images/gallery-powder-profiles.jpg',
 });

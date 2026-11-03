@@ -5,6 +5,8 @@ import { Footer } from '@/components/layout/Footer';
 import { SmoothScroll } from '@/components/layout/SmoothScroll';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { companyData } from '@/data/company';
+import { pageSeoCopy } from '@/data/seo-pages';
+import { navigationLinks } from '@/data/navigation';
 import {
   DEFAULT_OG_IMAGE,
   LEGAL_NAME,
@@ -12,18 +14,19 @@ import {
   SITE_NAME,
   SITE_URL,
   localBusinessJsonLd,
+  manufacturingBusinessJsonLd,
   organizationJsonLd,
+  siteNavigationJsonLd,
   websiteJsonLd,
 } from '@/lib/seo';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} | Aluminium Ingot, Profile, Coating & Anodising`,
+    default: pageSeoCopy.home.absoluteTitle,
     template: `%s | ${SITE_NAME}`,
   },
-  description:
-    'Santoshi Metal Industries Private Limited (CIN: U24202OD2026PTC055660) specializes in aluminium ingot, aluminium profile, aluminium scrap & supply, powder coating, and anodising in Ganjam, Odisha, India.',
+  description: pageSeoCopy.home.description,
   keywords: [...PRIMARY_KEYWORDS],
   applicationName: SITE_NAME,
   authors: [{ name: LEGAL_NAME, url: SITE_URL }],
@@ -107,10 +110,26 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const navItems = [
+    ...navigationLinks.map((link) => ({ name: link.label, path: link.href })),
+    ...(navigationLinks.find((l) => l.children)?.children || []).map((child) => ({
+      name: child.label,
+      path: child.href,
+    })),
+  ];
+
   return (
     <html lang="en-IN" className="scroll-smooth">
       <body className="bg-white text-brand-text antialiased selection:bg-brand-blue selection:text-white">
-        <JsonLd data={[organizationJsonLd(), localBusinessJsonLd(), websiteJsonLd()]} />
+        <JsonLd
+          data={[
+            organizationJsonLd(),
+            localBusinessJsonLd(),
+            manufacturingBusinessJsonLd(),
+            websiteJsonLd(),
+            siteNavigationJsonLd(navItems),
+          ]}
+        />
         <SmoothScroll>
           <div className="flex flex-col min-h-screen">
             <a
