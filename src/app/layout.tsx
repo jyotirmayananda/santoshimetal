@@ -7,6 +7,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { companyData } from '@/data/company';
 import { pageSeoCopy } from '@/data/seo-pages';
 import { navigationLinks } from '@/data/navigation';
+import { Analytics } from '@/components/seo/Analytics';
 import {
   DEFAULT_OG_IMAGE,
   LEGAL_NAME,
@@ -14,7 +15,6 @@ import {
   SITE_NAME,
   SITE_URL,
   localBusinessJsonLd,
-  manufacturingBusinessJsonLd,
   organizationJsonLd,
   siteNavigationJsonLd,
   websiteJsonLd,
@@ -125,11 +125,11 @@ export default function RootLayout({
           data={[
             organizationJsonLd(),
             localBusinessJsonLd(),
-            manufacturingBusinessJsonLd(),
             websiteJsonLd(),
             siteNavigationJsonLd(navItems),
           ]}
         />
+        <Analytics />
         <SmoothScroll>
           <div className="flex flex-col min-h-screen">
             <a

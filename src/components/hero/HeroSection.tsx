@@ -55,7 +55,8 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 1.2, ease: easeOutExpo }}
             className="mt-6 text-lg sm:text-xl md:text-2xl text-brand-text-secondary font-medium leading-relaxed max-w-2xl"
           >
-            Aluminium Ingot, Profile, Scrap &amp; Supply, Powder Coating, and Anodising—engineered for industry.
+            Aluminium products and industrial solutions in Odisha — ingots, profiles, scrap &amp; supply,
+            powder coating, and anodising.
           </motion.p>
 
           <motion.div

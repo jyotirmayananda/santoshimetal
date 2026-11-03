@@ -1,12 +1,7 @@
 import type { Metadata } from 'next';
 import { serviceSeoCopy } from '@/data/seo-pages';
 import { servicesData } from '@/data/services';
-import {
-  breadcrumbJsonLd,
-  buildPageMetadata,
-  faqJsonLd,
-  serviceJsonLd,
-} from '@/lib/seo';
+import { breadcrumbJsonLd, buildPageMetadata, serviceJsonLd } from '@/lib/seo';
 
 export function getServiceBySlug(slug: string) {
   return servicesData.find((s) => s.slug === slug);
@@ -26,20 +21,14 @@ export function buildServiceMetadata(slug: string): Metadata {
 
   return buildPageMetadata({
     title: copy?.title || service.title,
+    absoluteTitle: copy?.absoluteTitle,
     description:
       copy?.description ||
-      `${service.shortDescription} Based in Ganjam, Odisha. Serving industrial clients across India.`,
+      `${service.shortDescription} Contact Santoshi Metal Industries in Odisha for enquiries.`,
     path: `/capabilities/${service.slug}`,
-    keywords: [
-      service.title,
-      ...(copy?.keywords || [
-        `${service.title} Odisha`,
-        `${service.title} India`,
-        'Santoshi Metal Industries',
-      ]),
-    ],
+    keywords: copy?.keywords || [service.title, 'Santoshi Metal Industries', 'Odisha'],
     image: service.heroImage,
-    imageAlt: `${service.title} — Santoshi Metal Industries Odisha`,
+    imageAlt: `${service.title} — Santoshi Metal Industries`,
   });
 }
 
@@ -47,29 +36,27 @@ export function buildServiceSchemas(slug: string) {
   const service = getServiceBySlug(slug);
   if (!service) return [];
 
-  const serviceFaqs = [
-    {
-      question: `What is included in ${service.title} at Santoshi Metal Industries?`,
-      answer: service.shortDescription,
-    },
-    {
-      question: `Where can I get ${service.title} in Odisha?`,
-      answer: `${service.title} is offered by Santoshi Metal Industries Private Limited from Kabisuryanagar, Ganjam, Odisha, with supply coordination across India.`,
-    },
-    {
-      question: `How do I enquire about ${service.title}?`,
-      answer:
-        'Use the Contact page to request a quotation with project details, alloy or finish requirements, and estimated quantity.',
-    },
-  ];
-
   return [
     breadcrumbJsonLd([
       { name: 'Home', path: '/' },
       { name: 'Capabilities', path: '/capabilities' },
       { name: service.title, path: `/capabilities/${service.slug}` },
     ]),
-    serviceJsonLd(service),
-    faqJsonLd(serviceFaqs),
+    serviceJsonLd({
+      title: service.title,
+      shortDescription: service.shortDescription,
+      fullDescription: service.fullDescription,
+      slug: service.slug,
+      heroImage: service.heroImage,
+    }),
+  ];
+}
+
+export function serviceBreadcrumbItems(slug: string) {
+  const service = getServiceBySlug(slug);
+  return [
+    { name: 'Home', path: '/' },
+    { name: 'Capabilities', path: '/capabilities' },
+    { name: service?.title || 'Capability' },
   ];
 }

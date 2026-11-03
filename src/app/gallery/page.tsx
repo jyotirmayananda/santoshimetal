@@ -3,21 +3,17 @@ import { GalleryGrid } from '@/components/gallery/GalleryGrid';
 import { Sparkles, Info } from 'lucide-react';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
-
 import { pageSeoCopy } from '@/data/seo-pages';
+import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = buildPageMetadata({
   title: pageSeoCopy.gallery.title,
+  absoluteTitle: pageSeoCopy.gallery.absoluteTitle,
   description: pageSeoCopy.gallery.description,
   path: '/gallery',
-  keywords: [
-    'aluminium finish gallery',
-    'powder coating samples',
-    'anodised aluminium photos',
-    'aluminium ingot photography',
-  ],
+  keywords: pageSeoCopy.gallery.keywords,
   image: '/images/gallery-powder-profiles.jpg',
 });
 
@@ -33,6 +29,12 @@ export default function GalleryPage() {
       {/* Header */}
       <section className="bg-brand-ice py-16 sm:py-24 border-b border-brand-border/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs
+            items={[
+              { name: 'Home', path: '/' },
+              { name: 'Gallery' },
+            ]}
+          />
           <div className="max-w-3xl">
             <h1 className="font-heading font-extrabold text-4xl sm:text-6xl text-brand-navy tracking-tight leading-[1.08]">
               METALLIC EXCELLENCE <br />

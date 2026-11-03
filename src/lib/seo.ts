@@ -12,24 +12,17 @@ export const DEFAULT_OG_IMAGE = {
   alt: `${SITE_NAME} — polished aluminium surface`,
 } as const;
 
+/** Report-aligned primary keywords (proposed; not volume-validated). */
 export const PRIMARY_KEYWORDS = [
   'Santoshi Metal Industries',
-  'Santoshi Metal Industries Private Limited',
-  'Aluminium Ingot Odisha',
-  'Aluminium Ingot Manufacturer India',
-  'Aluminium Profile Supplier India',
-  'Aluminium Extrusion Odisha',
-  'Aluminium Scrap Supply Odisha',
-  'Aluminium Powder Coating Odisha',
-  'Aluminium Anodising India',
-  'Ganjam Aluminium Manufacturing',
-  'Kabisuryanagar Metal Industries',
-  'Foundry Remelt Ingots',
-  'Architectural Aluminium Profiles',
-  'Electrostatic Powder Coating',
-  'Electrochemical Anodising',
-  'Aluminium company Ganjam',
-  'Buy aluminium ingots Odisha',
+  'aluminium supplier in Odisha',
+  'aluminium products Odisha',
+  'aluminium ingot supplier Odisha',
+  'aluminium profile supplier India',
+  'aluminium scrap supplier Odisha',
+  'aluminium powder coating services',
+  'aluminium anodising services',
+  'Ganjam Odisha aluminium',
 ] as const;
 
 export function absoluteUrl(path = '/'): string {
@@ -51,6 +44,8 @@ type BuildMetadataOptions = {
   imageAlt?: string;
   type?: 'website' | 'article';
   noIndex?: boolean;
+  /** When set, bypasses the root title template. */
+  absoluteTitle?: string;
 };
 
 export function buildPageMetadata({
@@ -62,17 +57,19 @@ export function buildPageMetadata({
   imageAlt,
   type = 'website',
   noIndex = false,
+  absoluteTitle,
 }: BuildMetadataOptions): Metadata {
   const url = absoluteUrl(path);
+  const displayTitle = absoluteTitle || `${title} | ${SITE_NAME}`;
   const ogImage = {
     url: image,
     width: 1200,
     height: 630,
-    alt: imageAlt || `${title} | ${SITE_NAME}`,
+    alt: imageAlt || displayTitle,
   };
 
   return {
-    title,
+    title: absoluteTitle ? { absolute: absoluteTitle } : title,
     description,
     keywords: [...PRIMARY_KEYWORDS, ...keywords],
     alternates: {
@@ -96,13 +93,13 @@ export function buildPageMetadata({
       locale: 'en_IN',
       url,
       siteName: SITE_NAME,
-      title: `${title} | ${SITE_NAME}`,
+      title: displayTitle,
       description,
       images: [ogImage],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} | ${SITE_NAME}`,
+      title: displayTitle,
       description,
       images: [image],
     },
@@ -123,6 +120,7 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   };
 }
 
+/** Organization schema limited to verified company registry facts. */
 export function organizationJsonLd() {
   return {
     '@context': 'https://schema.org',
@@ -130,13 +128,11 @@ export function organizationJsonLd() {
     '@id': `${SITE_URL}/#organization`,
     name: LEGAL_NAME,
     legalName: LEGAL_NAME,
-    alternateName: [SITE_NAME, 'Santoshi Metal', 'Santoshi Metals'],
+    alternateName: [SITE_NAME, 'Santoshi Metal'],
     url: SITE_URL,
     logo: {
       '@type': 'ImageObject',
       url: absoluteImageUrl('/images/logo-full.jpg'),
-      width: 512,
-      height: 512,
     },
     image: absoluteImageUrl('/images/logo-full.jpg'),
     identifier: {
@@ -149,9 +145,7 @@ export function organizationJsonLd() {
       '@type': 'Person',
       name: d.name,
       jobTitle: d.designation,
-      ...(d.image
-        ? { image: absoluteImageUrl(d.image) }
-        : {}),
+      ...(d.image ? { image: absoluteImageUrl(d.image) } : {}),
     })),
     address: {
       '@type': 'PostalAddress',
@@ -168,11 +162,14 @@ export function organizationJsonLd() {
     slogan: companyData.tagline,
     knowsAbout: companyData.coreActivities,
     description:
-      'Aluminium manufacturing and processing company in Odisha specializing in aluminium ingot, aluminium profile, scrap & supply, powder coating, and anodising.',
-    sameAs: [],
+      'Santoshi Metal Industries Private Limited — aluminium supplier in Odisha offering ingots, profiles, scrap & supply, powder coating and anodising solutions.',
   };
 }
 
+/**
+ * LocalBusiness without invented phone, hours, price, or geo coordinates.
+ * Add those fields only after company verification.
+ */
 export function localBusinessJsonLd() {
   return {
     '@context': 'https://schema.org',
@@ -182,7 +179,6 @@ export function localBusinessJsonLd() {
     legalName: LEGAL_NAME,
     image: absoluteImageUrl('/images/logo-full.jpg'),
     url: SITE_URL,
-    priceRange: '$$',
     address: {
       '@type': 'PostalAddress',
       streetAddress: `${companyData.registeredOffice.careOf}, ${companyData.registeredOffice.street}`,
@@ -191,20 +187,6 @@ export function localBusinessJsonLd() {
       postalCode: companyData.registeredOffice.pincode,
       addressCountry: 'IN',
     },
-    geo: {
-      '@type': 'GeoCoordinates',
-      // Approximate Kabisuryanagar, Ganjam coordinates
-      latitude: 19.6012,
-      longitude: 84.7966,
-    },
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        opens: '09:00',
-        closes: '18:00',
-      },
-    ],
     parentOrganization: {
       '@id': `${SITE_URL}/#organization`,
     },
@@ -219,7 +201,7 @@ export function websiteJsonLd() {
     url: SITE_URL,
     name: SITE_NAME,
     description:
-      'Engineering aluminium through ingot manufacturing, profiles, scrap & supply, powder coating, and anodising.',
+      'Aluminium supplier in Odisha — ingots, profiles, scrap supply, powder coating and anodising from Santoshi Metal Industries.',
     publisher: {
       '@id': `${SITE_URL}/#organization`,
     },
@@ -239,7 +221,7 @@ export function serviceJsonLd(service: {
     '@type': 'Service',
     name: service.title,
     serviceType: service.title,
-    description: service.fullDescription || service.shortDescription,
+    description: service.shortDescription,
     url: absoluteUrl(`/capabilities/${service.slug}`),
     image: absoluteImageUrl(service.heroImage),
     provider: {
@@ -248,10 +230,6 @@ export function serviceJsonLd(service: {
     areaServed: {
       '@type': 'Country',
       name: 'India',
-    },
-    brand: {
-      '@type': 'Brand',
-      name: SITE_NAME,
     },
   };
 }
@@ -263,6 +241,7 @@ export function offerCatalogJsonLd(
     '@context': 'https://schema.org',
     '@type': 'OfferCatalog',
     name: `${SITE_NAME} Capabilities`,
+    numberOfItems: services.length,
     itemListElement: services.map((service, index) => ({
       '@type': 'Offer',
       position: index + 1,
@@ -291,9 +270,7 @@ export function faqJsonLd(faqs: { question: string; answer: string }[]) {
   };
 }
 
-export function siteNavigationJsonLd(
-  links: { name: string; path: string }[]
-) {
+export function siteNavigationJsonLd(links: { name: string; path: string }[]) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -304,38 +281,5 @@ export function siteNavigationJsonLd(
       name: link.name,
       url: absoluteUrl(link.path),
     })),
-  };
-}
-
-export function manufacturingBusinessJsonLd() {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'ManufacturingBusiness',
-    '@id': `${SITE_URL}/#manufacturing`,
-    name: SITE_NAME,
-    legalName: LEGAL_NAME,
-    url: SITE_URL,
-    image: absoluteImageUrl('/images/logo-full.jpg'),
-    description:
-      'Aluminium ingot manufacturing, profile supply, scrap & supply, powder coating, and anodising in Odisha, India.',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: `${companyData.registeredOffice.careOf}, ${companyData.registeredOffice.street}`,
-      addressLocality: 'Kabisuryanagar',
-      addressRegion: 'Odisha',
-      postalCode: companyData.registeredOffice.pincode,
-      addressCountry: 'IN',
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 19.6012,
-      longitude: 84.7966,
-    },
-    hasOfferCatalog: {
-      '@id': `${SITE_URL}/capabilities`,
-    },
-    parentOrganization: {
-      '@id': `${SITE_URL}/#organization`,
-    },
   };
 }

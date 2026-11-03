@@ -10,6 +10,7 @@ import { ManufacturingStory } from '@/components/sections/ManufacturingStory';
 import { IndustriesGrid } from '@/components/sections/IndustriesGrid';
 import { GalleryPreview } from '@/components/sections/GalleryPreview';
 import { CtaBanner } from '@/components/sections/CtaBanner';
+import { HomeFaq } from '@/components/seo/HomeFaq';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { pageSeoCopy, siteFaqs } from '@/data/seo-pages';
 import { servicesData } from '@/data/services';
@@ -22,24 +23,14 @@ import {
   offerCatalogJsonLd,
 } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  ...buildPageMetadata({
-    title: pageSeoCopy.home.title,
-    description: pageSeoCopy.home.description,
-    path: '/',
-    keywords: [
-      'aluminium manufacturer Odisha',
-      'aluminium company Ganjam',
-      'remelt ingot supplier India',
-      'powder coating plant Odisha',
-      'aluminium anodising Odisha',
-    ],
-    image: '/images/silver-wave.jpg',
-  }),
-  title: {
-    absolute: pageSeoCopy.home.absoluteTitle,
-  },
-};
+export const metadata: Metadata = buildPageMetadata({
+  title: pageSeoCopy.home.title,
+  absoluteTitle: pageSeoCopy.home.absoluteTitle,
+  description: pageSeoCopy.home.description,
+  path: '/',
+  keywords: pageSeoCopy.home.keywords,
+  image: '/images/silver-wave.jpg',
+});
 
 export default function HomePage() {
   const homeSchemas = [
@@ -82,6 +73,7 @@ export default function HomePage() {
       <ManufacturingStory />
       <IndustriesGrid />
       <GalleryPreview />
+      <HomeFaq />
       <CtaBanner />
     </div>
   );

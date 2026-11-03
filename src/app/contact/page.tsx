@@ -11,22 +11,17 @@ import {
   Clock,
   CheckCircle,
 } from 'lucide-react';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { breadcrumbJsonLd, buildPageMetadata, SITE_URL } from '@/lib/seo';
-
 import { pageSeoCopy } from '@/data/seo-pages';
+import { breadcrumbJsonLd, buildPageMetadata, SITE_URL } from '@/lib/seo';
 
 export const metadata: Metadata = buildPageMetadata({
   title: pageSeoCopy.contact.title,
+  absoluteTitle: pageSeoCopy.contact.absoluteTitle,
   description: pageSeoCopy.contact.description,
   path: '/contact',
-  keywords: [
-    'aluminium quote Odisha',
-    'contact Santoshi Metal Industries',
-    'powder coating enquiry',
-    'aluminium ingot quotation',
-    'anodising quote India',
-  ],
+  keywords: pageSeoCopy.contact.keywords,
   image: '/images/logo-full.jpg',
 });
 
@@ -64,6 +59,12 @@ export default function ContactPage() {
       {/* Header */}
       <section className="bg-brand-ice py-16 sm:py-24 border-b border-brand-border/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs
+            items={[
+              { name: 'Home', path: '/' },
+              { name: 'Contact' },
+            ]}
+          />
           <div className="max-w-3xl">
             <h1 className="font-heading font-extrabold text-4xl sm:text-6xl text-brand-navy tracking-tight leading-[1.08]">
               LET&apos;S START <br />

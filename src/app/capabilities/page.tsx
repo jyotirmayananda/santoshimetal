@@ -8,14 +8,10 @@ import { pageSeoCopy } from '@/data/seo-pages';
 
 export const metadata: Metadata = buildPageMetadata({
   title: pageSeoCopy.capabilities.title,
+  absoluteTitle: pageSeoCopy.capabilities.absoluteTitle,
   description: pageSeoCopy.capabilities.description,
   path: '/capabilities',
-  keywords: [
-    'aluminium capabilities Odisha',
-    'aluminium processing India',
-    'powder coating and anodising',
-    'aluminium ingot and profile supplier',
-  ],
+  keywords: pageSeoCopy.capabilities.keywords,
   image: '/images/powder-coating.jpg',
 });
 

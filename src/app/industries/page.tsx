@@ -15,21 +15,17 @@ import {
 } from 'lucide-react';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
-
 import { pageSeoCopy } from '@/data/seo-pages';
+import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = buildPageMetadata({
   title: pageSeoCopy.industries.title,
+  absoluteTitle: pageSeoCopy.industries.absoluteTitle,
   description: pageSeoCopy.industries.description,
   path: '/industries',
-  keywords: [
-    'architectural aluminium India',
-    'automotive aluminium castings',
-    'infrastructure aluminium profiles',
-    'industrial aluminium fabrication Odisha',
-  ],
+  keywords: pageSeoCopy.industries.keywords,
   image: '/images/architectural-facade.jpg',
 });
 
@@ -54,6 +50,12 @@ export default function IndustriesPage() {
       {/* Hero Header */}
       <section className="bg-brand-ice py-16 sm:py-24 border-b border-brand-border/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs
+            items={[
+              { name: 'Home', path: '/' },
+              { name: 'Industries' },
+            ]}
+          />
           <div className="max-w-3xl">
             <h1 className="font-heading font-extrabold text-4xl sm:text-6xl text-brand-navy tracking-tight leading-[1.08]">
               ALUMINIUM FOR <br />

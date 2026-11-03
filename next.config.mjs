@@ -36,6 +36,11 @@ const nextConfig = {
         destination: '/capabilities/aluminium-scrap-supply',
         permanent: true,
       },
+      {
+        source: '/capabilities/aluminium-profiles',
+        destination: '/capabilities/aluminium-profile',
+        permanent: true,
+      },
     ];
   },
 };

@@ -4,8 +4,14 @@ import { Metadata } from 'next';
 import { servicesData } from '@/data/services';
 import { ArrowRight, CheckCircle2, Layers, ShieldCheck, Sparkles } from 'lucide-react';
 import { CtaBanner } from '@/components/sections/CtaBanner';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { buildServiceMetadata, buildServiceSchemas } from '@/lib/service-seo';
+import { RelatedCapabilities } from '@/components/seo/RelatedCapabilities';
+import {
+  buildServiceMetadata,
+  buildServiceSchemas,
+  serviceBreadcrumbItems,
+} from '@/lib/service-seo';
 
 export const metadata: Metadata = buildServiceMetadata('anodising');
 
@@ -18,6 +24,7 @@ export default function AnodisingPage() {
       {/* 1. Large Cinematic Hero */}
       <section className="relative overflow-hidden bg-brand-ice py-16 sm:py-24 border-b border-brand-border/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs items={serviceBreadcrumbItems('anodising')} />
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-7 space-y-6">
               <h1 className="font-heading font-extrabold text-4xl sm:text-6xl text-brand-navy tracking-tight leading-[1.08]">
@@ -160,6 +167,7 @@ export default function AnodisingPage() {
         </div>
       </section>
 
+      <RelatedCapabilities currentSlug="anodising" />
       <CtaBanner />
     </div>
   );

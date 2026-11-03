@@ -7,6 +7,7 @@ import { servicesData } from '@/data/services';
 import { Sparkles, Layers, Boxes, Cylinder, Recycle, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 import { Reveal, Stagger, StaggerItem } from '@/components/motion/Reveal';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { easeOutExpo, viewportOnce } from '@/lib/motion';
 
 export function CapabilitiesContent() {
@@ -22,6 +23,12 @@ export function CapabilitiesContent() {
     <div className="pt-28 pb-20 bg-white">
       <section className="bg-brand-ice py-16 sm:py-24 border-b border-brand-border/60 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs
+            items={[
+              { name: 'Home', path: '/' },
+              { name: 'Capabilities' },
+            ]}
+          />
           <Reveal className="max-w-3xl" direction="blur">
             <h1 className="font-heading font-extrabold text-4xl sm:text-6xl text-brand-navy tracking-tight leading-[1.08]">
               ENGINEERED CAPABILITY. <br />

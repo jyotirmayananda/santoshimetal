@@ -16,22 +16,17 @@ import {
 } from 'lucide-react';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
-
 import { pageSeoCopy } from '@/data/seo-pages';
+import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = buildPageMetadata({
   title: pageSeoCopy.about.title,
+  absoluteTitle: pageSeoCopy.about.absoluteTitle,
   description: pageSeoCopy.about.description,
   path: '/about',
-  keywords: [
-    'about Santoshi Metal Industries',
-    'aluminium company Odisha',
-    'Kumuda Chandra Sahu',
-    'Bikrant Kumar Sahu',
-    'CIN U24202OD2026PTC055660',
-  ],
+  keywords: pageSeoCopy.about.keywords,
   image: '/images/architectural-facade.jpg',
 });
 
@@ -41,12 +36,18 @@ export default function AboutPage() {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: 'Home', path: '/' },
-          { name: 'About Us', path: '/about' },
+          { name: 'About', path: '/about' },
         ])}
       />
       {/* 1. Hero Photographic Header */}
       <section className="relative overflow-hidden bg-brand-ice py-16 sm:py-24 border-b border-brand-border/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs
+            items={[
+              { name: 'Home', path: '/' },
+              { name: 'About' },
+            ]}
+          />
           <div className="max-w-3xl">
             <h1 className="font-heading font-extrabold text-4xl sm:text-6xl text-brand-navy tracking-tight leading-[1.08]">
               ENGINEERING ALUMINIUM. <br />
