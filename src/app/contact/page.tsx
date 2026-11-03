@@ -11,16 +11,54 @@ import {
   Clock,
   CheckCircle,
 } from 'lucide-react';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumbJsonLd, buildPageMetadata, SITE_URL } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Contact Us & Request Quote | Santoshi Metal Industries',
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Contact & Request a Quote',
   description:
-    'Submit an industrial enquiry or request a quotation for aluminium powder coating, anodising, foundry ingots, or material supply.',
-};
+    'Request a quotation for aluminium ingot, profile, scrap & supply, powder coating, or anodising. Contact Santoshi Metal Industries in Kabisuryanagar, Ganjam, Odisha.',
+  path: '/contact',
+  keywords: [
+    'aluminium quote Odisha',
+    'contact Santoshi Metal Industries',
+    'powder coating enquiry',
+    'aluminium ingot quotation',
+  ],
+  image: '/images/logo-full.jpg',
+});
 
 export default function ContactPage() {
+  const contactSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contact Santoshi Metal Industries',
+    url: `${SITE_URL}/contact`,
+    mainEntity: {
+      '@type': 'Organization',
+      name: companyData.legalName,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: `${companyData.registeredOffice.careOf}, ${companyData.registeredOffice.street}`,
+        addressLocality: companyData.registeredOffice.locality,
+        addressRegion: companyData.registeredOffice.state,
+        postalCode: companyData.registeredOffice.pincode,
+        addressCountry: 'IN',
+      },
+    },
+  };
+
   return (
     <div className="pt-28 pb-20 bg-white">
+      <JsonLd
+        data={[
+          breadcrumbJsonLd([
+            { name: 'Home', path: '/' },
+            { name: 'Contact', path: '/contact' },
+          ]),
+          contactSchema,
+        ]}
+      />
       {/* Header */}
       <section className="bg-brand-ice py-16 sm:py-24 border-b border-brand-border/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

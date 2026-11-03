@@ -2,20 +2,19 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { servicesData } from '@/data/services';
-import { ArrowRight, CheckCircle2, Sparkles, Shield, Layers, HelpCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { CtaBanner } from '@/components/sections/CtaBanner';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { buildServiceMetadata, buildServiceSchemas } from '@/lib/service-seo';
 
-export const metadata: Metadata = {
-  title: 'Aluminium Powder Coating | Santoshi Metal Industries',
-  description:
-    'High-performance electrostatic aluminium powder coating in Odisha, India. Architectural finishes, UV resistance, and durable polymer protection.',
-};
+export const metadata: Metadata = buildServiceMetadata('powder-coating');
 
 export default function PowderCoatingPage() {
   const service = servicesData.find((s) => s.id === 'powder-coating')!;
 
   return (
     <div className="pt-28 pb-20 bg-white">
+      <JsonLd data={buildServiceSchemas('powder-coating')} />
       {/* 1. Large Cinematic Hero */}
       <section className="relative overflow-hidden bg-brand-ice py-16 sm:py-24 border-b border-brand-border/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

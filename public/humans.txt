@@ -1,0 +1,10 @@
+/* TEAM */
+Company: Santoshi Metal Industries Private Limited
+CIN: U24202OD2026PTC055660
+Location: Kabisuryanagar, Kodala, Ganjam, Odisha – 761104, India
+Directors: Sri Kumuda Chandra Sahu, Bikrant Kumar Sahu
+
+/* SITE */
+Standards: HTML5, CSS3, Schema.org JSON-LD
+Language: English (en-IN)
+Focus: Aluminium Ingot, Aluminium Profile, Aluminium Scrap & Supply, Powder Coating, Anodising

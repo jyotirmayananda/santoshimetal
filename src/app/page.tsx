@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { HeroSection } from '@/components/hero/HeroSection';
 import { CompanyIntro } from '@/components/sections/CompanyIntro';
 import { CoreCapabilities } from '@/components/sections/CoreCapabilities';
@@ -9,49 +10,73 @@ import { ManufacturingStory } from '@/components/sections/ManufacturingStory';
 import { IndustriesGrid } from '@/components/sections/IndustriesGrid';
 import { GalleryPreview } from '@/components/sections/GalleryPreview';
 import { CtaBanner } from '@/components/sections/CtaBanner';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { servicesData } from '@/data/services';
+import {
+  SITE_NAME,
+  absoluteUrl,
+  breadcrumbJsonLd,
+  buildPageMetadata,
+  offerCatalogJsonLd,
+} from '@/lib/seo';
 
-export const metadata = {
-  title: 'Santoshi Metal Industries | Engineering Aluminium. Shaping the Future.',
-  description:
-    'Santoshi Metal Industries Private Limited (CIN: U24202OD2026PTC055660) is an aluminium manufacturing, surface processing, and industrial supply enterprise in Odisha, India. Specializing in Aluminium Ingot, Aluminium Profile, Scrap & Supply, Powder Coating, and Anodising.',
+export const metadata: Metadata = {
+  ...buildPageMetadata({
+    title: 'Aluminium Ingot, Profile, Scrap Supply, Powder Coating & Anodising',
+    description:
+      'Santoshi Metal Industries Private Limited (CIN: U24202OD2026PTC055660) is an aluminium manufacturing and processing company in Ganjam, Odisha. Specializing in Aluminium Ingot, Aluminium Profile, Scrap & Supply, Powder Coating, and Anodising across India.',
+    path: '/',
+    keywords: [
+      'aluminium manufacturer Odisha',
+      'aluminium company Ganjam',
+      'remelt ingot supplier India',
+      'powder coating plant Odisha',
+    ],
+    image: '/images/silver-wave.jpg',
+  }),
+  title: {
+    absolute: `${SITE_NAME} | Aluminium Ingot, Profile, Coating & Anodising in Odisha`,
+  },
 };
 
 export default function HomePage() {
+  const homeSchemas = [
+    breadcrumbJsonLd([{ name: 'Home', path: '/' }]),
+    offerCatalogJsonLd(
+      servicesData.map((s) => ({
+        title: s.title,
+        slug: s.slug,
+        shortDescription: s.shortDescription,
+      }))
+    ),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${absoluteUrl('/')}/#webpage`,
+      url: absoluteUrl('/'),
+      name: `${SITE_NAME} | Engineering Aluminium. Shaping the Future.`,
+      isPartOf: { '@id': `${absoluteUrl('/')}/#website` },
+      about: { '@id': `${absoluteUrl('/')}/#organization` },
+      description:
+        'Aluminium ingot, profile, scrap & supply, powder coating, and anodising from Santoshi Metal Industries, Odisha.',
+      inLanguage: 'en-IN',
+    },
+  ];
+
   return (
     <div className="flex flex-col w-full">
-      {/* 1. Signature Liquid Aluminium Hero Section */}
+      <JsonLd data={homeSchemas} />
       <HeroSection />
-
-      {/* 2. Company Introduction (Asymmetric Editorial) */}
       <CompanyIntro />
-
-      {/* 3. Five Core Capabilities (Large Photo Showcase) */}
       <CoreCapabilities />
-
-      {/* 4. Interactive Aluminium Finish Studio (3D Profile) */}
       <FinishStudio />
-
-      {/* 5. Powder Coating Feature Section */}
       <PowderCoatingFeature />
-
-      {/* 6. Anodising Feature Section (Split Screen + Carousel) */}
       <AnodisingFeature />
-
-      {/* 7. Aluminium Ingot Showcase (3D Ingot Model + Metallurgy) */}
       <IngotShowcase />
-
-      {/* 8. Manufacturing Story (5 Illustrative Workflow Stages) */}
       <ManufacturingStory />
-
-      {/* 9. Industries We Serve (6 Application Sectors) */}
       <IndustriesGrid />
-
-      {/* 10. Surface Gallery Preview */}
       <GalleryPreview />
-
-      {/* 11. Final Conversion CTA Banner */}
       <CtaBanner />
     </div>
   );
 }
-

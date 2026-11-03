@@ -4,18 +4,17 @@ import { Metadata } from 'next';
 import { servicesData } from '@/data/services';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { CtaBanner } from '@/components/sections/CtaBanner';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { buildServiceMetadata, buildServiceSchemas } from '@/lib/service-seo';
 
-export const metadata: Metadata = {
-  title: 'Aluminium Profile | Santoshi Metal Industries',
-  description:
-    'Precision aluminium profiles and extrusions for architecture, fenestration, and industrial fabrication—supplied from Ganjam, Odisha.',
-};
+export const metadata: Metadata = buildServiceMetadata('aluminium-profile');
 
 export default function AluminiumProfilePage() {
   const service = servicesData.find((s) => s.id === 'aluminium-profile')!;
 
   return (
     <div className="pt-28 pb-20 bg-white">
+      <JsonLd data={buildServiceSchemas('aluminium-profile')} />
       <section className="relative overflow-hidden bg-brand-ice py-16 sm:py-24 border-b border-brand-border/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">

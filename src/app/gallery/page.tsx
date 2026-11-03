@@ -3,15 +3,31 @@ import { GalleryGrid } from '@/components/gallery/GalleryGrid';
 import { Sparkles, Info } from 'lucide-react';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 
-export const metadata: Metadata = {
-  title: 'Surface Gallery | Santoshi Metal Industries Private Limited',
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Surface Gallery',
   description:
-    'Visual library of architectural powder coating finishes, electrolytic anodised profiles, cast aluminium ingots, and extrusion processes.',
-};
+    'Browse architectural powder coating finishes, anodised aluminium profiles, remelt ingots, and extrusion photography from Santoshi Metal Industries.',
+  path: '/gallery',
+  keywords: [
+    'aluminium finish gallery',
+    'powder coating samples',
+    'anodised aluminium photos',
+  ],
+  image: '/images/gallery-powder-profiles.jpg',
+});
 
 export default function GalleryPage() {
   return (
     <div className="pt-28 pb-20 bg-white">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Gallery', path: '/gallery' },
+        ])}
+      />
       {/* Header */}
       <section className="bg-brand-ice py-16 sm:py-24 border-b border-brand-border/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

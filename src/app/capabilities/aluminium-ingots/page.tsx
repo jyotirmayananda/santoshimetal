@@ -2,20 +2,19 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { servicesData } from '@/data/services';
-import { ArrowRight, CheckCircle2, Boxes, Flame, Scale, ShieldCheck } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { CtaBanner } from '@/components/sections/CtaBanner';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { buildServiceMetadata, buildServiceSchemas } from '@/lib/service-seo';
 
-export const metadata: Metadata = {
-  title: 'Aluminium Ingot | Santoshi Metal Industries',
-  description:
-    'Foundry-grade and remelt aluminium ingots manufactured and supplied across India from Ganjam, Odisha. High metallurgical consistency for die casters.',
-};
+export const metadata: Metadata = buildServiceMetadata('aluminium-ingots');
 
 export default function AluminiumIngotsPage() {
   const service = servicesData.find((s) => s.id === 'aluminium-ingots')!;
 
   return (
     <div className="pt-28 pb-20 bg-white">
+      <JsonLd data={buildServiceSchemas('aluminium-ingots')} />
       {/* 1. Large Cinematic Hero */}
       <section className="relative overflow-hidden bg-brand-ice py-16 sm:py-24 border-b border-brand-border/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

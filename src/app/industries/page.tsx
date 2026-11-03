@@ -15,11 +15,21 @@ import {
 } from 'lucide-react';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 
-export const metadata: Metadata = {
-  title: 'Industries We Serve | Santoshi Metal Industries Private Limited',
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Industries We Serve',
   description:
-    'Aluminium solutions engineered for Architecture, Infrastructure, Automotive, Electrical Engineering, and Heavy Industrial Fabrication across India.',
-};
+    'Aluminium solutions for architecture, infrastructure, automotive, electrical engineering, and industrial fabrication from Santoshi Metal Industries, Odisha.',
+  path: '/industries',
+  keywords: [
+    'architectural aluminium India',
+    'automotive aluminium castings',
+    'infrastructure aluminium profiles',
+  ],
+  image: '/images/architectural-facade.jpg',
+});
 
 export default function IndustriesPage() {
   const icons: Record<string, React.ReactNode> = {
@@ -33,6 +43,12 @@ export default function IndustriesPage() {
 
   return (
     <div className="pt-28 pb-20 bg-white">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Industries', path: '/industries' },
+        ])}
+      />
       {/* Hero Header */}
       <section className="bg-brand-ice py-16 sm:py-24 border-b border-brand-border/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -16,15 +16,32 @@ import {
 } from 'lucide-react';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 
-export const metadata: Metadata = {
-  title: 'About Us | Santoshi Metal Industries Private Limited',
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'About Us',
   description:
-    'Learn about Santoshi Metal Industries Private Limited (CIN: U24202OD2026PTC055660), an aluminium manufacturing, powder coating, anodising, and supply enterprise based in Ganjam, Odisha.',
-};
+    'Learn about Santoshi Metal Industries Private Limited (CIN: U24202OD2026PTC055660)—aluminium ingot, profile, scrap & supply, powder coating, and anodising from Ganjam, Odisha.',
+  path: '/about',
+  keywords: [
+    'about Santoshi Metal Industries',
+    'aluminium company Odisha',
+    'Kumuda Chandra Sahu',
+    'Bikrant Kumar Sahu',
+  ],
+  image: '/images/architectural-facade.jpg',
+});
 
 export default function AboutPage() {
   return (
     <div className="pt-28 pb-20 bg-white">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'About Us', path: '/about' },
+        ])}
+      />
       {/* 1. Hero Photographic Header */}
       <section className="relative overflow-hidden bg-brand-ice py-16 sm:py-24 border-b border-brand-border/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
