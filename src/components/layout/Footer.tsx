@@ -1,9 +1,11 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { BrandLogo } from './BrandLogo';
 import { companyData } from '@/data/company';
-import { navigationLinks } from '@/data/navigation';
 import { MapPin, Building2, UserCheck, ShieldCheck, ArrowUpRight } from 'lucide-react';
+import { Reveal, Stagger, StaggerItem } from '@/components/motion/Reveal';
 
 export function Footer() {
   const currentYear = 2026;
@@ -11,10 +13,8 @@ export function Footer() {
   return (
     <footer className="bg-brand-ice border-t border-brand-border/80 pt-16 pb-12 text-brand-text">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-brand-border">
-          {/* Col 1: Brand & Tagline (4 cols) */}
-          <div className="lg:col-span-4 space-y-4">
+          <Reveal className="lg:col-span-4 space-y-4" direction="up">
             <BrandLogo size="lg" />
             <p className="text-sm text-brand-text-secondary leading-relaxed pt-1">
               Santoshi Metal Industries Private Limited is a specialized aluminium manufacturing,
@@ -34,60 +34,46 @@ export function Footer() {
                 {companyData.companyType}
               </div>
             </div>
-          </div>
+          </Reveal>
 
-          {/* Col 2: Core Capabilities (3 cols) */}
-          <div className="lg:col-span-3 space-y-3">
-            <h3 className="font-heading font-bold text-sm uppercase tracking-wider text-brand-navy">
-              Core Capabilities
-            </h3>
+          <Stagger className="lg:col-span-3 space-y-3" fast>
+            <StaggerItem>
+              <h3 className="font-heading font-bold text-sm uppercase tracking-wider text-brand-navy">
+                Core Capabilities
+              </h3>
+            </StaggerItem>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link
-                  href="/capabilities/powder-coating"
-                  className="text-brand-text-secondary hover:text-brand-blue transition-colors flex items-center justify-between group"
-                >
-                  <span>Aluminium Powder Coating</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/capabilities/anodising"
-                  className="text-brand-text-secondary hover:text-brand-blue transition-colors flex items-center justify-between group"
-                >
-                  <span>Aluminium Anodising</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/capabilities/aluminium-ingots"
-                  className="text-brand-text-secondary hover:text-brand-blue transition-colors flex items-center justify-between group"
-                >
-                  <span>Aluminium Ingot Manufacturing</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/capabilities/aluminium-supply"
-                  className="text-brand-text-secondary hover:text-brand-blue transition-colors flex items-center justify-between group"
-                >
-                  <span>Aluminium Sales & Supply</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Link>
-              </li>
-              <li className="pt-2">
-                <Link
-                  href="/industries"
-                  className="text-xs font-semibold text-brand-blue hover:underline"
-                >
-                  View Industries We Serve →
-                </Link>
-              </li>
+              {[
+                { href: '/capabilities/aluminium-ingots', label: 'Aluminium Ingot' },
+                { href: '/capabilities/aluminium-profile', label: 'Aluminium Profile' },
+                { href: '/capabilities/aluminium-scrap-supply', label: 'Aluminium Scrap & Supply' },
+                { href: '/capabilities/powder-coating', label: 'Aluminium Powder Coating' },
+                { href: '/capabilities/anodising', label: 'Aluminium Anodising' },
+              ].map((item) => (
+                <StaggerItem key={item.href}>
+                  <li>
+                    <Link
+                      href={item.href}
+                      className="text-brand-text-secondary hover:text-brand-blue transition-colors flex items-center justify-between group"
+                    >
+                      <span>{item.label}</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </Link>
+                  </li>
+                </StaggerItem>
+              ))}
+              <StaggerItem>
+                <li className="pt-2">
+                  <Link
+                    href="/industries"
+                    className="text-xs font-semibold text-brand-blue hover:underline"
+                  >
+                    View Industries We Serve →
+                  </Link>
+                </li>
+              </StaggerItem>
             </ul>
-          </div>
+          </Stagger>
 
           {/* Col 3: Company Navigation (2 cols) */}
           <div className="lg:col-span-2 space-y-3">

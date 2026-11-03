@@ -12,13 +12,14 @@ export const metadata: Metadata = {
     template: `%s | ${companyData.legalName}`,
   },
   description:
-    'Santoshi Metal Industries Private Limited (CIN: U24202OD2026PTC055660) specializes in aluminium powder coating, aluminium anodising, aluminium remelt ingot manufacturing, and industrial aluminium supply in Odisha, India.',
+    'Santoshi Metal Industries Private Limited (CIN: U24202OD2026PTC055660) specializes in aluminium ingot, aluminium profile, aluminium scrap & supply, powder coating, and anodising in Odisha, India.',
   keywords: [
     'Santoshi Metal Industries',
+    'Aluminium Ingot',
+    'Aluminium Profile',
+    'Aluminium Scrap Supply',
     'Aluminium Powder Coating',
     'Aluminium Anodising',
-    'Aluminium Ingots',
-    'Aluminium Supply',
     'Odisha Aluminium Manufacturing',
     'Ganjam Metal Processing',
     'Sri Kumuda Chandra Sahu',

@@ -4,7 +4,9 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ChevronLeft, ChevronRight, Layers, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, ShieldCheck, Sparkles } from 'lucide-react';
+import { Reveal, Stagger, StaggerItem } from '@/components/motion/Reveal';
+import { easeOutExpo, viewportOnce } from '@/lib/motion';
 
 export function AnodisingFeature() {
   const anodisedSlides = [
@@ -41,8 +43,7 @@ export function AnodisingFeature() {
   return (
     <section className="py-24 sm:py-32 bg-white relative overflow-hidden border-t border-brand-border/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="max-w-3xl mb-16">
+        <Reveal className="max-w-3xl mb-16" direction="blur">
           <h2 className="font-heading font-extrabold text-3xl sm:text-5xl text-brand-navy tracking-tight leading-tight">
             PRECISION IN <br />
             <span className="text-brand-blue">EVERY FINISH.</span>
@@ -52,20 +53,24 @@ export function AnodisingFeature() {
             electrochemical conversion that transforms the metal itself into an ultra-hard,
             decorative, and non-peeling oxide shield.
           </p>
-        </div>
+        </Reveal>
 
-        {/* Split Screen + Interactive Carousel */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Left: Interactive Carousel Display (7 cols) */}
-          <div className="lg:col-span-7 relative">
+          <motion.div
+            className="lg:col-span-7 relative"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={viewportOnce}
+            transition={{ duration: 0.8, ease: easeOutExpo }}
+          >
             <div className="relative h-[380px] sm:h-[480px] w-full rounded-3xl overflow-hidden shadow-elevated border border-brand-border bg-slate-100">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeSlide}
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.02 }}
-                  transition={{ duration: 0.4 }}
+                  initial={{ opacity: 0, x: 40, scale: 0.98 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: -30, scale: 1.02 }}
+                  transition={{ duration: 0.45, ease: easeOutExpo }}
                   className="relative w-full h-full"
                 >
                   <Image
@@ -89,31 +94,33 @@ export function AnodisingFeature() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Carousel Navigation Arrows */}
               <div className="absolute top-6 right-6 flex items-center gap-2">
-                <button
+                <motion.button
                   onClick={prevSlide}
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.92 }}
                   className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-md border border-slate-200 flex items-center justify-center text-brand-navy hover:bg-brand-blue hover:text-white transition-colors shadow-subtle"
                   aria-label="Previous Slide"
                 >
                   <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button
+                </motion.button>
+                <motion.button
                   onClick={nextSlide}
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.92 }}
                   className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-md border border-slate-200 flex items-center justify-center text-brand-navy hover:bg-brand-blue hover:text-white transition-colors shadow-subtle"
                   aria-label="Next Slide"
                 >
                   <ChevronRight className="w-5 h-5" />
-                </button>
+                </motion.button>
               </div>
 
-              {/* Progress Indicators */}
               <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2">
                 {anodisedSlides.map((_, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActiveSlide(idx)}
-                    className={`h-1.5 rounded-full transition-all ${
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
                       activeSlide === idx ? 'w-8 bg-brand-blue' : 'w-2 bg-white/60'
                     }`}
                     aria-label={`Slide ${idx + 1}`}
@@ -121,59 +128,82 @@ export function AnodisingFeature() {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right: Technical Highlights & Finish Preview Cards (5 cols) */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="space-y-4">
-              <div className="p-4 rounded-2xl bg-brand-ice border border-brand-border/70 shadow-subtle">
-                <div className="font-heading font-bold text-brand-navy flex items-center gap-2 mb-1.5">
-                  <ShieldCheck className="w-4 h-4 text-brand-blue" />
-                  <span>Integrated Metal Oxide Matrix</span>
-                </div>
-                <p className="text-xs text-brand-text-secondary leading-relaxed">
-                  Grown electrochemically from the substrate itself. Zero flaking, zero chipping, and
-                  permanent adherence that survives harsh coastal and urban atmospheres.
-                </p>
-              </div>
+          <motion.div
+            className="lg:col-span-5 space-y-6"
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={viewportOnce}
+            transition={{ duration: 0.8, delay: 0.1, ease: easeOutExpo }}
+          >
+            <Stagger className="space-y-4" fast>
+              <StaggerItem>
+                <motion.div
+                  className="p-4 rounded-2xl bg-brand-ice border border-brand-border/70 shadow-subtle"
+                  whileHover={{ y: -3, borderColor: 'rgba(40,120,200,0.35)' }}
+                >
+                  <div className="font-heading font-bold text-brand-navy flex items-center gap-2 mb-1.5">
+                    <ShieldCheck className="w-4 h-4 text-brand-blue" />
+                    <span>Integrated Metal Oxide Matrix</span>
+                  </div>
+                  <p className="text-xs text-brand-text-secondary leading-relaxed">
+                    Grown electrochemically from the substrate itself. Zero flaking, zero chipping, and
+                    permanent adherence that survives harsh coastal and urban atmospheres.
+                  </p>
+                </motion.div>
+              </StaggerItem>
 
-              <div className="p-4 rounded-2xl bg-brand-ice border border-brand-border/70 shadow-subtle">
-                <div className="font-heading font-bold text-brand-navy flex items-center gap-2 mb-1.5">
-                  <Sparkles className="w-4 h-4 text-brand-blue" />
-                  <span>Natural Specular Metallic Character</span>
-                </div>
-                <p className="text-xs text-brand-text-secondary leading-relaxed">
-                  Reflects the authentic grain and shimmer of aluminium. Perfect for luxury architectural
-                  mullions, curtain wall framing, and premium interior trims.
-                </p>
-              </div>
-            </div>
+              <StaggerItem>
+                <motion.div
+                  className="p-4 rounded-2xl bg-brand-ice border border-brand-border/70 shadow-subtle"
+                  whileHover={{ y: -3, borderColor: 'rgba(40,120,200,0.35)' }}
+                >
+                  <div className="font-heading font-bold text-brand-navy flex items-center gap-2 mb-1.5">
+                    <Sparkles className="w-4 h-4 text-brand-blue" />
+                    <span>Natural Specular Metallic Character</span>
+                  </div>
+                  <p className="text-xs text-brand-text-secondary leading-relaxed">
+                    Reflects the authentic grain and shimmer of aluminium. Perfect for luxury architectural
+                    mullions, curtain wall framing, and premium interior trims.
+                  </p>
+                </motion.div>
+              </StaggerItem>
+            </Stagger>
 
-            {/* Finish Tone Selector Indicators */}
-            <div className="p-5 rounded-2xl bg-white border border-brand-border space-y-3">
+            <motion.div
+              className="p-5 rounded-2xl bg-white border border-brand-border space-y-3"
+              whileHover={{ scale: 1.01 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+            >
               <span className="text-xs font-bold uppercase tracking-wider text-brand-navy block">
                 Illustrative Anodic Spectrum:
               </span>
               <div className="grid grid-cols-3 gap-2 text-center text-xs">
-                <div className="p-2.5 rounded-xl bg-slate-100 border border-slate-200">
-                  <div className="w-4 h-4 rounded-full bg-[#DCE4EC] mx-auto mb-1 border border-slate-300" />
-                  <span className="font-semibold text-brand-navy block">Natural Silver</span>
-                  <span className="text-[10px] text-brand-text-secondary">Clear Anodised</span>
-                </div>
-                <div className="p-2.5 rounded-xl bg-slate-100 border border-slate-200">
-                  <div className="w-4 h-4 rounded-full bg-[#C5B69E] mx-auto mb-1 border border-slate-300" />
-                  <span className="font-semibold text-brand-navy block">Champagne</span>
-                  <span className="text-[10px] text-brand-text-secondary">Electrolytic Gold</span>
-                </div>
-                <div className="p-2.5 rounded-xl bg-slate-100 border border-slate-200">
-                  <div className="w-4 h-4 rounded-full bg-[#5A4638] mx-auto mb-1 border border-slate-300" />
-                  <span className="font-semibold text-brand-navy block">Bronze</span>
-                  <span className="text-[10px] text-brand-text-secondary">Deep Architectural</span>
-                </div>
+                {[
+                  { color: '#DCE4EC', name: 'Natural Silver', sub: 'Clear Anodised' },
+                  { color: '#C5B69E', name: 'Champagne', sub: 'Electrolytic Gold' },
+                  { color: '#5A4638', name: 'Bronze', sub: 'Deep Architectural' },
+                ].map((tone) => (
+                  <motion.div
+                    key={tone.name}
+                    className="p-2.5 rounded-xl bg-slate-100 border border-slate-200"
+                    whileHover={{ y: -4, backgroundColor: '#ffffff' }}
+                  >
+                    <motion.div
+                      className="w-4 h-4 rounded-full mx-auto mb-1 border border-slate-300"
+                      style={{ backgroundColor: tone.color }}
+                      animate={{ scale: [1, 1.12, 1] }}
+                      transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+                    />
+                    <span className="font-semibold text-brand-navy block">{tone.name}</span>
+                    <span className="text-[10px] text-brand-text-secondary">{tone.sub}</span>
+                  </motion.div>
+                ))}
               </div>
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div whileHover={{ x: 4 }}>
               <Link
                 href="/capabilities/anodising"
                 className="group inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-brand-navy text-white text-sm font-semibold hover:bg-brand-blue transition-colors shadow-subtle"
@@ -181,8 +211,8 @@ export function AnodisingFeature() {
                 <span>Explore Anodising Solutions</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

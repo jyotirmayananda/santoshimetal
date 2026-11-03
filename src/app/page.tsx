@@ -13,7 +13,7 @@ import { CtaBanner } from '@/components/sections/CtaBanner';
 export const metadata = {
   title: 'Santoshi Metal Industries | Engineering Aluminium. Shaping the Future.',
   description:
-    'Santoshi Metal Industries Private Limited (CIN: U24202OD2026PTC055660) is an aluminium manufacturing, surface processing, and industrial supply enterprise in Odisha, India. Specializing in Aluminium Powder Coating, Aluminium Anodising, Ingot Manufacturing, and Aluminium Supply.',
+    'Santoshi Metal Industries Private Limited (CIN: U24202OD2026PTC055660) is an aluminium manufacturing, surface processing, and industrial supply enterprise in Odisha, India. Specializing in Aluminium Ingot, Aluminium Profile, Scrap & Supply, Powder Coating, and Anodising.',
 };
 
 export default function HomePage() {
@@ -25,7 +25,7 @@ export default function HomePage() {
       {/* 2. Company Introduction (Asymmetric Editorial) */}
       <CompanyIntro />
 
-      {/* 3. Four Core Capabilities (Large Photo Showcase) */}
+      {/* 3. Five Core Capabilities (Large Photo Showcase) */}
       <CoreCapabilities />
 
       {/* 4. Interactive Aluminium Finish Studio (3D Profile) */}

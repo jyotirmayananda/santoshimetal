@@ -4,7 +4,10 @@ import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import * as THREE from 'three';
-import { ArrowRight, Boxes, ShieldCheck, Flame, Scale, CheckCircle2 } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Boxes, Scale, CheckCircle2 } from 'lucide-react';
+import { Reveal, Stagger, StaggerItem, MagneticButton } from '@/components/motion/Reveal';
+import { easeOutExpo, viewportOnce } from '@/lib/motion';
 
 export function IngotShowcase() {
   const ingotCanvasRef = useRef<HTMLDivElement>(null);
@@ -116,10 +119,18 @@ export function IngotShowcase() {
     <section className="py-24 sm:py-32 bg-brand-ice relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left: 3D Ingot Preview & Real Foundry Image (6 cols) */}
-          <div className="lg:col-span-6 space-y-6">
-            {/* 3D Ingot Interactive Canvas */}
-            <div className="relative h-64 sm:h-72 w-full rounded-2xl bg-white border border-brand-border overflow-hidden shadow-subtle">
+          <motion.div
+            className="lg:col-span-6 space-y-6"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={viewportOnce}
+            transition={{ duration: 0.8, ease: easeOutExpo }}
+          >
+            <motion.div
+              className="relative h-64 sm:h-72 w-full rounded-2xl bg-white border border-brand-border overflow-hidden shadow-subtle"
+              whileHover={{ scale: 1.01 }}
+              transition={{ duration: 0.4 }}
+            >
               <div ref={ingotCanvasRef} className="w-full h-full cursor-grab" />
               <div className="absolute top-3 left-3 px-3 py-1 rounded-md bg-white/90 backdrop-blur-sm border border-slate-200 text-[11px] font-bold uppercase tracking-wider text-brand-navy shadow-subtle flex items-center gap-1.5">
                 <Boxes className="w-3.5 h-3.5 text-brand-blue" />
@@ -128,16 +139,19 @@ export function IngotShowcase() {
               <div className="absolute bottom-3 right-3 text-[10px] text-brand-text-secondary bg-white/80 px-2 py-0.5 rounded">
                 Cast Remelt Ingot Geometry
               </div>
-            </div>
+            </motion.div>
 
-            {/* Ingot Foundry Photo */}
-            <div className="relative h-64 sm:h-72 w-full rounded-2xl overflow-hidden shadow-elevated border border-white group">
+            <motion.div
+              className="relative h-64 sm:h-72 w-full rounded-2xl overflow-hidden shadow-elevated border border-white group"
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.35 }}
+            >
               <Image
                 src="/images/aluminium-ingots.jpg"
                 alt="Stacked cast aluminium ingots"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/60 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 text-white">
@@ -146,68 +160,91 @@ export function IngotShowcase() {
                 </span>
                 <div className="text-sm font-semibold">Bundled & Strapped for Reliable Logistics</div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* Right: Technical Story & Enquiry CTA (6 cols) */}
-          <div className="lg:col-span-6 space-y-6">
-            <h2 className="font-heading font-extrabold text-3xl sm:text-5xl text-brand-navy tracking-tight leading-tight">
-              STRENGTH AT <br />
-              <span className="text-brand-blue">THE CORE.</span>
-            </h2>
+          <motion.div
+            className="lg:col-span-6 space-y-6"
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={viewportOnce}
+            transition={{ duration: 0.8, delay: 0.1, ease: easeOutExpo }}
+          >
+            <Reveal direction="blur">
+              <h2 className="font-heading font-extrabold text-3xl sm:text-5xl text-brand-navy tracking-tight leading-tight">
+                STRENGTH AT <br />
+                <span className="text-brand-blue">THE CORE.</span>
+              </h2>
+            </Reveal>
 
-            <p className="text-base sm:text-lg text-brand-text leading-relaxed">
-              Santoshi Metal Industries manufactures and supplies aluminium remelt ingots engineered
-              to serve as dependable feedstock for casting units, high-pressure die casters, and
-              extrusion alloy formulation.
-            </p>
+            <Reveal delay={0.08}>
+              <p className="text-base sm:text-lg text-brand-text leading-relaxed">
+                Santoshi Metal Industries manufactures and supplies aluminium remelt ingots engineered
+                to serve as dependable feedstock for casting units, high-pressure die casters, and
+                extrusion alloy formulation.
+              </p>
+            </Reveal>
 
-            <p className="text-sm text-brand-text-secondary leading-relaxed">
-              Our casting methodology focuses on controlled melt refining, effective degassing, and
-              dross minimization to deliver reliable batch-to-batch fluidity and metallurgical
-              integrity for foundry partners across India.
-            </p>
+            <Reveal delay={0.14}>
+              <p className="text-sm text-brand-text-secondary leading-relaxed">
+                Our casting methodology focuses on controlled melt refining, effective degassing, and
+                dross minimization to deliver reliable batch-to-batch fluidity and metallurgical
+                integrity for foundry partners across India.
+              </p>
+            </Reveal>
 
-            {/* Metallurgical Pillars */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-              <div className="p-3.5 rounded-xl bg-white border border-brand-border/80">
-                <div className="text-xs font-bold text-brand-navy mb-1 flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-brand-blue" />
-                  Controlled Trace Chemistry
-                </div>
-                <p className="text-[11px] text-brand-text-secondary">
-                  Refined melt processing to minimize inclusion defects and trapped porosity in castings.
-                </p>
-              </div>
+            <Stagger className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2" fast>
+              <StaggerItem>
+                <motion.div
+                  className="p-3.5 rounded-xl bg-white border border-brand-border/80 h-full"
+                  whileHover={{ y: -3, borderColor: 'rgba(40,120,200,0.35)' }}
+                >
+                  <div className="text-xs font-bold text-brand-navy mb-1 flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-brand-blue" />
+                    Controlled Trace Chemistry
+                  </div>
+                  <p className="text-[11px] text-brand-text-secondary">
+                    Refined melt processing to minimize inclusion defects and trapped porosity in castings.
+                  </p>
+                </motion.div>
+              </StaggerItem>
 
-              <div className="p-3.5 rounded-xl bg-white border border-brand-border/80">
-                <div className="text-xs font-bold text-brand-navy mb-1 flex items-center gap-1.5">
-                  <Scale className="w-3.5 h-3.5 text-brand-blue" />
-                  Optimised Remelt Efficiency
-                </div>
-                <p className="text-[11px] text-brand-text-secondary">
-                  Tapered ingot profile facilitating fast heat absorption and lower energy consumption in crucible furnaces.
-                </p>
-              </div>
-            </div>
+              <StaggerItem>
+                <motion.div
+                  className="p-3.5 rounded-xl bg-white border border-brand-border/80 h-full"
+                  whileHover={{ y: -3, borderColor: 'rgba(40,120,200,0.35)' }}
+                >
+                  <div className="text-xs font-bold text-brand-navy mb-1 flex items-center gap-1.5">
+                    <Scale className="w-3.5 h-3.5 text-brand-blue" />
+                    Optimised Remelt Efficiency
+                  </div>
+                  <p className="text-[11px] text-brand-text-secondary">
+                    Tapered ingot profile facilitating fast heat absorption and lower energy consumption in crucible furnaces.
+                  </p>
+                </motion.div>
+              </StaggerItem>
+            </Stagger>
 
-            {/* Prominent CTA */}
-            <div className="pt-4 flex flex-wrap items-center gap-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-3 px-7 py-4 rounded-xl bg-brand-blue text-white font-semibold text-sm shadow-metallic hover:bg-brand-blue-hover transition-all"
-              >
-                <span>Request Ingot Quotation</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/capabilities/aluminium-ingots"
-                className="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-white text-brand-navy font-semibold text-sm border border-brand-border hover:bg-slate-50 transition-colors"
-              >
-                <span>Technical Specifications</span>
-              </Link>
-            </div>
-          </div>
+            <Reveal delay={0.2} className="pt-4 flex flex-wrap items-center gap-4">
+              <MagneticButton>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-3 px-7 py-4 rounded-xl bg-brand-blue text-white font-semibold text-sm shadow-metallic hover:bg-brand-blue-hover transition-all"
+                >
+                  <span>Request Ingot Quotation</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </MagneticButton>
+              <MagneticButton>
+                <Link
+                  href="/capabilities/aluminium-ingots"
+                  className="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-white text-brand-navy font-semibold text-sm border border-brand-border hover:bg-slate-50 transition-colors"
+                >
+                  <span>Technical Specifications</span>
+                </Link>
+              </MagneticButton>
+            </Reveal>
+          </motion.div>
         </div>
       </div>
     </section>

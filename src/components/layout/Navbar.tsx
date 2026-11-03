@@ -9,12 +9,12 @@ import {
   Menu,
   X,
   ArrowRight,
-  Phone,
   Sparkles,
   Layers,
   CircleDot,
   Boxes,
-  Truck,
+  Cylinder,
+  Recycle,
 } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
 import { navigationLinks } from '@/data/navigation';
@@ -41,10 +41,11 @@ export function Navbar() {
   }, [pathname]);
 
   const capabilityIcons: Record<string, React.ReactNode> = {
+    'Aluminium Ingot': <Boxes className="w-4 h-4 text-brand-blue" />,
+    'Aluminium Profile': <Cylinder className="w-4 h-4 text-brand-navy" />,
+    'Aluminium Scrap & Supply': <Recycle className="w-4 h-4 text-brand-blue" />,
     'Aluminium Powder Coating': <Sparkles className="w-4 h-4 text-brand-blue" />,
     'Aluminium Anodising': <Layers className="w-4 h-4 text-brand-navy" />,
-    'Aluminium Ingots': <Boxes className="w-4 h-4 text-brand-blue" />,
-    'Aluminium Sales & Supply': <Truck className="w-4 h-4 text-brand-navy" />,
   };
 
   return (
@@ -99,7 +100,7 @@ export function Navbar() {
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 8, scale: 0.98 }}
                             transition={{ duration: 0.2 }}
-                            className="absolute left-1/2 -translate-x-1/2 mt-2 w-[440px] bg-white rounded-2xl shadow-elevated border border-brand-border p-3 grid gap-1.5 z-50"
+                            className="absolute left-1/2 -translate-x-1/2 mt-2 w-[460px] bg-white rounded-2xl shadow-elevated border border-brand-border p-3 grid gap-1.5 z-50"
                           >
                             <div className="px-3 py-2 border-b border-slate-100 mb-1">
                               <span className="text-[11px] font-bold uppercase tracking-wider text-brand-blue">

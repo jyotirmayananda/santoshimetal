@@ -1,10 +1,11 @@
 import { z } from 'zod';
 
 export const serviceOptions = [
+  'Aluminium Ingot',
+  'Aluminium Profile',
+  'Aluminium Scrap & Supply',
   'Aluminium Powder Coating',
   'Aluminium Anodising',
-  'Aluminium Ingot Manufacturing & Supply',
-  'Aluminium Sales & Supply',
   'General Industrial Enquiry',
 ] as const;
 

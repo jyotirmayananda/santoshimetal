@@ -63,6 +63,71 @@ h1, h2, h3, h4, h5, h6 {
   background: #94a3b8;
 }
 
+/* Ambient motion utilities */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(40, 120, 200, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(40, 120, 200, 0);
+  }
+}
+
+@keyframes metallic-sweep {
+  0% {
+    transform: translateX(-120%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(220%) skewX(-12deg);
+  }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 4s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.4s ease-out infinite;
+}
+
+.animate-metallic-sweep::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 65%
+  );
+  animation: metallic-sweep 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -72,5 +137,12 @@ h1, h2, h3, h4, h5, h6 {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .animate-float,
+  .animate-shimmer,
+  .animate-pulse-glow,
+  .animate-metallic-sweep::after {
+    animation: none !important;
   }
 }

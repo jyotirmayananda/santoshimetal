@@ -222,8 +222,13 @@ export function FinishStudio() {
   return (
     <section className="py-24 sm:py-32 bg-white relative overflow-hidden border-t border-brand-border/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <motion.div
+          className="text-center max-w-3xl mx-auto mb-14"
+          initial={{ opacity: 0, y: 28, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        >
           <h2 className="font-heading font-extrabold text-3xl sm:text-5xl text-brand-navy tracking-tight">
             EXPLORE THE BEAUTY OF <span className="text-brand-blue">ALUMINIUM.</span>
           </h2>
@@ -231,11 +236,15 @@ export function FinishStudio() {
             Inspect our demonstration surface finishes on a realistic 3D architectural extruded profile.
             Click or touch to rotate the 3D model in real time.
           </p>
-        </div>
+        </motion.div>
 
-        {/* 3D Studio & Controls Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-brand-ice/60 rounded-3xl p-6 sm:p-10 border border-brand-border shadow-elevated">
-          {/* Left: 3D Profile Canvas (7 cols) */}
+        <motion.div
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-brand-ice/60 rounded-3xl p-6 sm:p-10 border border-brand-border shadow-elevated"
+          initial={{ opacity: 0, y: 40, scale: 0.97 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="lg:col-span-7 relative h-[380px] sm:h-[480px] w-full rounded-2xl bg-white border border-brand-border overflow-hidden shadow-subtle">
             <div ref={canvasContainerRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
 
@@ -341,7 +350,7 @@ export function FinishStudio() {
               </Link>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

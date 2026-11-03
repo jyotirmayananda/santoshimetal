@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { manufacturingStoryStages } from '@/data/manufacturingStory';
 import { ArrowRight, CheckCircle2, ChevronRight, Info, Compass } from 'lucide-react';
 import Link from 'next/link';
+import { Reveal } from '@/components/motion/Reveal';
+import { easeOutExpo, viewportOnce } from '@/lib/motion';
 
 export function ManufacturingStory() {
   const [activeStageIndex, setActiveStageIndex] = useState(0);
@@ -14,8 +16,7 @@ export function ManufacturingStory() {
   return (
     <section className="py-24 sm:py-32 bg-white relative overflow-hidden border-t border-brand-border/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="max-w-3xl mb-16">
+        <Reveal className="max-w-3xl mb-16" direction="blur">
           <h2 className="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl text-brand-navy tracking-tight leading-[1.1]">
             FROM MATERIAL <br />
             <span className="text-brand-blue">TO POSSIBILITY.</span>
@@ -24,17 +25,24 @@ export function ManufacturingStory() {
             Our step-by-step approach ensures that every aluminium profile, ingot, and coated element
             meets strict metallurgical, aesthetic, and dimensional standards.
           </p>
-        </div>
+        </Reveal>
 
-        {/* Desktop Stepped Navigation Bar */}
-        <div className="hidden lg:grid grid-cols-5 gap-3 mb-10 pb-4 border-b border-brand-border">
+        <motion.div
+          className="hidden lg:grid grid-cols-5 gap-3 mb-10 pb-4 border-b border-brand-border"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewportOnce}
+          transition={{ duration: 0.6, ease: easeOutExpo }}
+        >
           {manufacturingStoryStages.map((stage, idx) => {
             const isActive = activeStageIndex === idx;
             return (
-              <button
+              <motion.button
                 key={stage.step}
                 onClick={() => setActiveStageIndex(idx)}
-                className={`text-left p-3.5 rounded-xl transition-all relative ${
+                whileHover={{ y: -3 }}
+                whileTap={{ scale: 0.98 }}
+                className={`text-left p-3.5 rounded-xl transition-all relative border ${
                   isActive
                     ? 'bg-brand-ice border-brand-blue shadow-subtle'
                     : 'hover:bg-slate-50 border-transparent'
@@ -58,17 +66,16 @@ export function ManufacturingStory() {
                   {stage.title}
                 </div>
 
-                {/* Animated active underline */}
                 {isActive && (
                   <motion.div
                     layoutId="storyActiveIndicator"
                     className="absolute -bottom-4 left-0 right-0 h-0.5 bg-brand-blue"
                   />
                 )}
-              </button>
+              </motion.button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Active Stage Display (Desktop & Tablet) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">

@@ -6,7 +6,7 @@ import { ArrowRight, CheckCircle2, Boxes, Flame, Scale, ShieldCheck } from 'luci
 import { CtaBanner } from '@/components/sections/CtaBanner';
 
 export const metadata: Metadata = {
-  title: 'Aluminium Ingot Manufacturing & Supply | Santoshi Metal Industries',
+  title: 'Aluminium Ingot | Santoshi Metal Industries',
   description:
     'Foundry-grade and remelt aluminium ingots manufactured and supplied across India from Ganjam, Odisha. High metallurgical consistency for die casters.',
 };

@@ -60,10 +60,11 @@ export const companyData: CompanyData = {
   tagline: 'ENGINEERING ALUMINIUM. SHAPING THE FUTURE.',
   secondaryTagline: 'Precision in Every Surface.',
   coreActivities: [
+    'Aluminium Ingot',
+    'Aluminium Profile',
+    'Aluminium Scrap & Supply',
     'Aluminium Powder Coating',
     'Aluminium Anodising',
-    'Aluminium Ingot Manufacturing and Supply',
-    'Aluminium Sales and Supply',
   ],
 };
 

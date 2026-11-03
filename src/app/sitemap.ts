@@ -24,6 +24,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/capabilities/aluminium-ingots`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/capabilities/aluminium-profile`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/capabilities/aluminium-scrap-supply`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/capabilities/powder-coating`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
@@ -31,18 +49,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/capabilities/anodising`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/capabilities/aluminium-ingots`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/capabilities/aluminium-supply`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.85,

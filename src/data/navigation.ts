@@ -17,6 +17,21 @@ export const navigationLinks: NavLink[] = [
     href: '/capabilities',
     children: [
       {
+        label: 'Aluminium Ingot',
+        href: '/capabilities/aluminium-ingots',
+        description: 'Foundry-grade remelt ingot manufacturing and supply.',
+      },
+      {
+        label: 'Aluminium Profile',
+        href: '/capabilities/aluminium-profile',
+        description: 'Precision extruded architectural and industrial profiles.',
+      },
+      {
+        label: 'Aluminium Scrap & Supply',
+        href: '/capabilities/aluminium-scrap-supply',
+        description: 'Graded scrap recovery and industrial aluminium feedstock supply.',
+      },
+      {
         label: 'Aluminium Powder Coating',
         href: '/capabilities/powder-coating',
         description: 'Durable, vibrant architectural and industrial powder coating finishes.',
@@ -26,20 +41,9 @@ export const navigationLinks: NavLink[] = [
         href: '/capabilities/anodising',
         description: 'Hardcoat and decorative electrochemical surface conversion.',
       },
-      {
-        label: 'Aluminium Ingots',
-        href: '/capabilities/aluminium-ingots',
-        description: 'Primary and foundry grade remelt ingot manufacturing and supply.',
-      },
-      {
-        label: 'Aluminium Sales & Supply',
-        href: '/capabilities/aluminium-supply',
-        description: 'Extrusions, sheets, profiles, and industrial stock distribution.',
-      },
     ],
   },
   { label: 'Industries', href: '/industries' },
   { label: 'Gallery', href: '/gallery' },
   { label: 'Contact', href: '/contact' },
 ];
-
