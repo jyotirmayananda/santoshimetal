@@ -80,6 +80,9 @@ export const metadata: Metadata = {
     apple: [{ url: '/apple-icon.png', type: 'image/png' }],
     shortcut: ['/favicon.ico'],
   },
+  verification: {
+    google: 'kzGbbb8LrB6g1WtaYE9aEN9VKYvRURSqAZ6xTIMU5aU',
+  },
   category: companyData.industry,
   classification: 'Aluminium Manufacturing & Surface Processing',
   other: {
