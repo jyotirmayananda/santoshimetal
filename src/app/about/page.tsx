@@ -257,15 +257,16 @@ export default function AboutPage() {
                 key={director.name}
                 className="group rounded-3xl bg-white border border-brand-border shadow-subtle hover:shadow-elevated transition-all duration-300 overflow-hidden flex flex-col"
               >
-                {/* Director Portrait */}
-                <div className="relative h-80 sm:h-96 w-full bg-slate-100 overflow-hidden">
+                {/* Director Portrait — 3:4 frame so faces are not cropped/softened */}
+                <div className="relative aspect-[3/4] w-full bg-slate-100 overflow-hidden">
                   {director.image ? (
                     <Image
                       src={director.image}
                       alt={`${director.name} - ${director.designation}`}
                       fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, 450px"
+                      quality={90}
+                      className="object-cover object-[center_18%] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                       priority
                     />
                   ) : (
